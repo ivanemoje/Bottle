@@ -341,16 +341,7 @@ class SalesList extends React.Component {
               <Avatar className={classes.purpleAvatar}>
                 {this.CapitalizeInitial(sale.bar) }
               </Avatar>,
-              <Link
-                //to={`/show/${sale.id}`}
-                to={"#"}
-                style={{
-                  color: "darkblue",
-                  textDecoration: "none"
-                }}
-              >
-                {sale.bar}
-              </Link>,
+              sale.bar,
               sale.drink,
               sale.brand,
               sale.unitPrice,

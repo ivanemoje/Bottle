@@ -226,11 +226,6 @@ class Header extends React.Component {
                       Dashboard
                     </Button>
                   </Link>
-                  {/* <Link to="/farmers" className={classes.link}>
-                    <Button color="inherit" className={classes.menuButton}>
-                      Stock 1
-                    </Button>
-                  </Link> */}
 
                   <Link to="/stock" className={classes.link}>
                     <Button color="inherit" className={classes.menuButton}>
@@ -238,11 +233,6 @@ class Header extends React.Component {
                     </Button>
                   </Link>
 
-                  {/* <Link to="/procurement" className={classes.link}>
-                    <Button color="inherit" className={classes.menuButton}>
-                      Expenses?
-                    </Button>
-                  </Link> */}
 
                   <Link to="/sales" className={classes.link}>
                     <Button color="inherit" className={classes.menuButton}>
