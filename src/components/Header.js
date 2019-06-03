@@ -226,17 +226,17 @@ class Header extends React.Component {
                       Dashboard
                     </Button>
                   </Link>
-                  <Link to="/farmers" className={classes.link}>
+                  {/* <Link to="/farmers" className={classes.link}>
+                    <Button color="inherit" className={classes.menuButton}>
+                      Stock 1
+                    </Button>
+                  </Link> */}
+
+                  <Link to="/stock" className={classes.link}>
                     <Button color="inherit" className={classes.menuButton}>
                       Stock
                     </Button>
                   </Link>
-
-                  {/* <Link to="/advances" className={classes.link}>
-                    <Button color="inherit" className={classes.menuButton}>
-                      Price
-                    </Button>
-                  </Link> */}
 
                   {/* <Link to="/procurement" className={classes.link}>
                     <Button color="inherit" className={classes.menuButton}>

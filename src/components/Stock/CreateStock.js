@@ -47,7 +47,7 @@ const lookup = {
   ]
 };
 
-class CreateFarmer extends React.Component {
+class CreateStock extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -90,7 +90,7 @@ class CreateFarmer extends React.Component {
     event.preventDefault();
 
     // get our form data out of state
-    const farmer = {
+    const stock = {
       // firstname: this.capitalize(this.state.firstname),
       // lastname: this.capitalize(this.state.lastname),
 
@@ -105,12 +105,12 @@ class CreateFarmer extends React.Component {
       })
     };
 
-    console.log(farmer);
+    console.log(stock);
 
-    //Save farmer module
-    const farmersRef = firebase.database().ref("farmers");
+    //Save stock module
+    const stockRef = firebase.database().ref("stock");
 
-    farmersRef.push(farmer);
+    stockRef.push(stock);
     this.setState({
       // firstname: "",
       // lastname: "",
@@ -257,4 +257,4 @@ class CreateFarmer extends React.Component {
   }
 }
 
-export default withStyles(styles)(CreateFarmer);
+export default withStyles(styles)(CreateStock);

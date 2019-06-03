@@ -8,6 +8,11 @@ import Dashboard from "./pages/Dashboard";
 import FarmerList from "./components/Farmer/FarmerList";
 import FarmerDetails from "./components/Farmer/FarmerDetails";
 import EditFarmer from "./components/Farmer/EditFarmer";
+
+import StockList from "./components/Stock/StockList";
+import StockDetails from "./components/Stock/StockDetails";
+import EditStock from "./components/Stock/EditStock";
+
 import ProcurementList from "./components/procurement/ProcurementList";
 
 import AdvancesList from "./components/advances/AdvancesList";
@@ -38,11 +43,18 @@ const App = ({ classes }) => (
     <main className={classes.main}>
       <Switch>
         <Route exact path="/" component={Dashboard} />
+
         <Route path="/farmers" component={FarmerList} />
         <Route path="/show/:id" component={FarmerDetails} />
         <Route path="/farmers/edit" component={EditFarmer} />
+
+        <Route path="/stock" component={StockList} />
+        <Route path="/show/:id" component={StockDetails} />
+        <Route path="/stock/edit" component={EditStock} />
+
         <Route path="/procurement" component={ProcurementList} />
         <Route path="/advances" component={AdvancesList} />
+        
         <Route path="/sales" component={SalesList} />
         <Route path="/price" component={PriceList} />
 

@@ -28,17 +28,10 @@ import DialogContent from "@material-ui/core/DialogContent";
 const columns = [
   "",
   {
-    name: "Fullname",
+    name: "Drink",
     options: {
       filter: false,
       sort: false
-    }
-  },
-  {
-    name: "Drink",
-    options: {
-      filter: true,
-      sort: true
     }
   },
   {
@@ -49,26 +42,27 @@ const columns = [
     }
   },
   {
-    name: "Stock 1",
+    name: "Opening",
     options: {
       filter: true,
       sort: true
     }
   },
   {
-    name: "Stock 2",
+    name: "Closing",
     options: {
       filter: true,
       sort: true
     }
   },
   {
-    name: "Stock 3",
+    name: "Sold",
     options: {
       filter: true,
       sort: true
     }
   },
+
   {
     name: "Actions",
     options: {
@@ -131,7 +125,7 @@ const lookup = {
 
 
 
-class FarmerList extends React.Component {
+class StockList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -162,9 +156,9 @@ class FarmerList extends React.Component {
   }
 
   componentDidMount() {
-    const farmersRef = firebase.database().ref("farmers");
+    const stockRef = firebase.database().ref("stock");
 
-    farmersRef.on("value", snapshot => {
+    stockRef.on("value", snapshot => {
       let items = snapshot.val();
       let newState = [];
       for (let item in items) {
@@ -193,14 +187,14 @@ class FarmerList extends React.Component {
     });
   }
 
-  updateFarmer(id) {
+  updateStock(id) {
     //const recordToEdit = this.state.data.find(item => item.id === id);
     //console.log(recordToEdit);
     this.handleOpen();
 
     const key = id;
-    const farmersRef = firebase.database().ref(`farmers/${key}`);
-    farmersRef.on("value", snapshot => {
+    const stockRef = firebase.database().ref(`stock/${key}`);
+    stockRef.on("value", snapshot => {
       // handle read data.
       //let data = snapshot.val();
       //traditionalAuthority: snapshot.child("traditionalAuthority").val(),
@@ -238,9 +232,7 @@ class FarmerList extends React.Component {
     event.preventDefault();
 
     // get our form data out of state
-    const farmer = {
-      // firstname: this.capitalize(this.state.firstname),
-      // lastname: this.capitalize(this.state.lastname),
+    const stock = {
 
       drink: this.state.drink,
       brand: this.state.brand,
@@ -250,11 +242,11 @@ class FarmerList extends React.Component {
       hectarage: this.state.hectarage
     };
 
-    //Update farmer module
+    //Update stock module
     const key = this.state.key;
-    const farmersRef = firebase.database().ref(`farmers/${key}`);
-    farmersRef
-      .update(farmer)
+    const stockRef = firebase.database().ref(`stock/${key}`);
+    stockRef
+      .update(stock)
       .then(function() {
         console.log("Synchronization succeeded");
       })
@@ -298,22 +290,22 @@ class FarmerList extends React.Component {
         return <CustomToolbar />;
       },
 
-      // Update farmers
+      // Update stock
       onRowClick: rowIndex => {
         //console.log(rowIndex);
         //this.handleOpen();
       },
-      // Delete farmers
+      // Delete stock
       onRowsDelete: rowsDeleted => {
         // get the corresponding id in state
         const row = rowsDeleted.data[0].index;
         const id = this.state.data[row]["id"];
         console.log(id);
 
-        // Perform farmer deletion and all related objects(advances & procurments)
+        // Perform stock deletion and all related objects(advances & procurments)
         firebase
           .database()
-          .ref("farmers")
+          .ref("stock")
           .child(id)
           .remove();
 
@@ -328,7 +320,7 @@ class FarmerList extends React.Component {
           .ref("procurement")
           .child(id)
           .remove();
-        // Perform farmer deletion and all related objects(advances & procurments)
+        // Perform stock deletion and all related objects(advances & procurments)
       }
     };
 
@@ -336,20 +328,33 @@ class FarmerList extends React.Component {
       <React.Fragment>
         <MUIDataTable
           title={"Stock list"}
-          data={data.map((farmer, index) => {
+          data={data.map((stock, index) => {
             return [
+              <Avatar className={classes.purpleAvatar}>
+                {this.CapitalizeInitial(stock.drink) }
+              </Avatar>,
+              <Link
+                //to={`/show/${sale.id}`}
+                to={"#"}
+                style={{
+                  color: "darkblue",
+                  textDecoration: "none"
+                }}
+              >
+                {stock.drink}
+              </Link>,
 
-              farmer.brand,
-              farmer.drink,
-              farmer.matureTrees,
-              farmer.immatureTrees,
-              farmer.hectarage,
+              
+              stock.brand,
+              stock.matureTrees,
+              stock.immatureTrees,
+              stock.hectarage,
 
               <IconButton
                 color="primary"
-                //onClick={() => this.updateFarmer(index)}
+                //onClick={() => this.updateStock(index)}
                 // The bind method also works
-                onClick={this.updateFarmer.bind(this, farmer.id)}
+                onClick={this.updateStock.bind(this, stock.id)}
               >
                 <EditIcon color="primary" />
               </IconButton>
@@ -537,4 +542,4 @@ class FarmerList extends React.Component {
   }
 }
 
-export default withStyles(styles)(FarmerList);
+export default withStyles(styles)(StockList);

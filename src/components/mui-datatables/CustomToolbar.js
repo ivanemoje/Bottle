@@ -14,6 +14,7 @@ import { Typography } from "@material-ui/core";
 import { Switch, Route } from "react-router-dom";
 
 import CreateFarmer from "../Farmer/CreateFarmer";
+import CreateStock from "../Stock/CreateStock";
 import CreateProcurement from "../procurement/CreateProcurement";
 import CreateSale from "../sales/CreateSale";
 import CreatePrice from "../price/CreatePrice";
@@ -44,7 +45,7 @@ class CustomToolbar extends React.Component {
 
     return (
       <React.Fragment>
-        <Tooltip title={"Register Farmer"}>
+        <Tooltip title={"Register Stock"}>
           <IconButton className={classes.iconButton} onClick={this.handleOpen}>
             <PersonAddIcon color="default" className={classes.addIcon} />
           </IconButton>
@@ -69,12 +70,13 @@ class CustomToolbar extends React.Component {
               align="center"
               style={{ color: "white" }}
             >
-              Register Farmer
+              Register Stock
             </Typography>
           </DialogTitle>
           <DialogContent>
             <Switch>
               <Route path="/farmers" component={CreateFarmer} />
+              <Route path="/stock" component={CreateStock} />
               <Route path="/procurement" component={CreateProcurement} />
               <Route path="/sales" component={CreateSale} />
               <Route path="/price" component={CreatePrice} />
