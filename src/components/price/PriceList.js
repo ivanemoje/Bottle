@@ -298,7 +298,9 @@ class PriceList extends React.Component {
           title={"Price list"}
           data={data.map((price, index) => {
             return [
-             
+              <Avatar className={classes.purpleAvatar}>
+                {this.CapitalizeInitial(price.brand)}
+              </Avatar>,
               price.unitPrice,
               price.drink,
               price.brand,
