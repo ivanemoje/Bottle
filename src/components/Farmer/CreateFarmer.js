@@ -12,89 +12,27 @@ import firebase from "../common/firebase";
 
 const styles = theme => ({});
 
-// const titles = [
-//   {
-//     value: "Beer",
-//     label: "Beer"
-//   },
-//   {
-//     value: "Soda",
-//     label: "Soda"
-//   }
-// ];
 
-const genders = [
+const drinks = [
   {
-    value: "Male",
-    label: "Male"
+    value: "Beer",
+    label: "Beer"
   },
   {
-    value: "Female",
-    label: "Female"
-  }
-];
-
-const maritalStatuses = [
-  {
-    value: "Married",
-    label: "Married"
-  },
-  {
-    value: "Single",
-    label: "Single"
-  },
-  {
-    value: "Widowed",
-    label: "Widowed"
-  },
-  {
-    value: "Separated",
-    label: "Separated"
-  }
-];
-
-const mmOptions = [
-  {
-    value: "Yes",
-    label: "Yes"
-  },
-  {
-    value: "No",
-    label: "No"
-  }
-];
-
-const mmPayments = [
-  {
-    value: "Yes",
-    label: "Yes"
-  },
-  {
-    value: "No",
-    label: "No"
-  }
-];
-
-const districts = [
-  {
-    value: "Chitipa",
-    label: "Chitipa"
-  },
-  {
-    value: "Rumphi",
-    label: "Rumphi"
+    value: "Soda",
+    label: "Soda"
   }
 ];
 
 const lookup = {
-  Chitipa: [
+  Beer: [
     { id: "1", text: "Kameme" },
     { id: "2", text: "Mwabulambya" },
     { id: "3", text: "Mwenemisuku" },
     { id: "4", text: "Mwenewenya" },
     { id: "5", text: "Nthalire" }
   ],
-  Rumphi: [
+  Soda: [
     { id: "1", text: "Chikulamayembe" },
     { id: "2", text: "Chipinduka" },
     { id: "3", text: "Kachulu" },
@@ -113,22 +51,17 @@ class CreateFarmer extends React.Component {
   constructor() {
     super();
     this.state = {
-      firstname: "",
-      lastname: "",
-      // title: "",
-      sex: "",
-      maritalStatus: "",
-      phone: "",
-      mmRegistered: "",
-      mmPayment: "",
-      district: "",
-      traditionalAuthority: "",
-      yearOpened: "",
+      // firstname: "",
+      // lastname: "",
+
+      drink: "",
+      brand: "",
+      
       matureTrees: "",
       immatureTrees: "",
       hectarage: "",
 
-      dataValue: "Chitipa"
+      dataValue: "Beer"
     };
   }
 
@@ -136,11 +69,11 @@ class CreateFarmer extends React.Component {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
-  onChangeDistrict = e => {
+  onChangeDrink = e => {
     this.setState({
       dataValue: e.target.value,
-      district: e.target.value,
-      traditionalAuthority: ""
+      drink: e.target.value,
+      brand: ""
     });
     console.log(e.target.value);
   };
@@ -159,17 +92,12 @@ class CreateFarmer extends React.Component {
 
     // get our form data out of state
     const farmer = {
-      firstname: this.capitalize(this.state.firstname),
-      lastname: this.capitalize(this.state.lastname),
-      // title: this.state.title,
-      sex: this.state.sex,
-      maritalStatus: this.state.maritalStatus,
-      phone: this.state.phone,
-      mmRegistered: this.state.mmRegistered,
-      mmPayment: this.state.mmPayment,
-      district: this.state.district,
-      traditionalAuthority: this.state.traditionalAuthority,
-      yearOpened: this.state.yearOpened,
+      // firstname: this.capitalize(this.state.firstname),
+      // lastname: this.capitalize(this.state.lastname),
+
+      drink: this.state.drink,
+      brand: this.state.brand,
+
       matureTrees: this.state.matureTrees,
       immatureTrees: this.state.immatureTrees,
       hectarage: this.state.hectarage,
@@ -185,18 +113,12 @@ class CreateFarmer extends React.Component {
 
     farmersRef.push(farmer);
     this.setState({
-      firstname: "",
-      lastname: "",
-      // title: "",
-      sex: "",
-      maritalStatus: "",
-      phone: "",
-      mmRegistered: "",
-      mmPayment: "",
-      district: "",
-      traditionalAuthority: "",
+      // firstname: "",
+      // lastname: "",
 
-      yearOpened: "",
+      drink: "",
+      brand: "",
+
       matureTrees: "",
       immatureTrees: "",
       hectarage: ""
@@ -205,16 +127,8 @@ class CreateFarmer extends React.Component {
 
   render() {
     const {
-      firstname,
-      lastname,
-      // title,
-      //sex,
-      //maritalStatus,
-      phone,
-      //mmRegistered,
-      //district,
-      //traditionalAuthority,
-      yearOpened,
+      // firstname,
+      // lastname,
       matureTrees,
       immatureTrees,
       hectarage
@@ -229,136 +143,27 @@ class CreateFarmer extends React.Component {
           <br />
 
           <Typography variant="headline" align="left" color="inherit">
-            Autobiography
+            Details
           </Typography>
 
           <Grid container spacing={24}>
+           
             <Grid item xs={6} sm={6}>
               <TextField
                 required
-                id="firstname"
-                name="firstname"
-                value={firstname}
-                onChange={this.onChange}
-                label="Firstname"
-                fullWidth
-                autoComplete="off"
-              />
-            </Grid>
-            <Grid item xs={6} sm={6}>
-              <TextField
-                required
-                id="lastname"
-                name="lastname"
-                value={lastname}
-                onChange={this.onChange}
-                label="Lastname"
-                fullWidth
-                autoComplete="off"
-              />
-            </Grid>
-            {/* <Grid item xs={6} sm={6}>
-              <TextField
-                required
-                id="title"
+                id="drink"
                 select
-                name="title"
-                value={title}
-                onChange={this.onChange}
-                label="Title*"
+                name="drink"
+                value={this.state.drink}
+                onChange={this.onChangeDrink}
+                label="Drink"
                 fullWidth
-                helperText="Please select title"
+                helperText="Please select drink"
                 InputLabelProps={{
                   shrink: true
                 }}
               >
-                {titles.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Grid> */}
-            <Grid item xs={6} sm={6}>
-              <TextField
-                required
-                id="sex"
-                select
-                name="sex"
-                value={this.state.sex}
-                onChange={this.onChange}
-                label="Sex*"
-                fullWidth
-                helperText="Please select gender"
-                InputLabelProps={{
-                  shrink: true
-                }}
-              >
-                {genders.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Grid>
-
-            <Grid item xs={6} sm={6}>
-              <TextField
-                required
-                id="maritalStatus"
-                select
-                name="maritalStatus"
-                value={this.state.maritalStatus}
-                onChange={this.onChange}
-                label="Marital Status*"
-                fullWidth
-                helperText="Please select marital status"
-                InputLabelProps={{
-                  shrink: true
-                }}
-              >
-                {maritalStatuses.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Grid>
-            <Grid item xs={6} sm={6}>
-              <InputMask
-                required
-                mask="(+265) 999 999 999"
-                value={phone}
-                onChange={this.onChange}
-              >
-                {() => (
-                  <TextField
-                    id="phone"
-                    name="phone"
-                    label="Phone"
-                    fullWidth
-                    helperText="For example: 772 123 456"
-                    autoComplete="phone"
-                  />
-                )}
-              </InputMask>
-            </Grid>
-
-            <Grid item xs={6} sm={6}>
-              <TextField
-                id="mmRegistered"
-                select
-                name="mmRegistered"
-                value={this.state.mmRegistered}
-                onChange={this.onChange}
-                label="Mobile Money Registered*"
-                fullWidth
-                helperText="Please select option"
-                InputLabelProps={{
-                  shrink: true
-                }}
-              >
-                {mmOptions.map(option => (
+                {drinks .map(option => (
                   <MenuItem key={option.value} value={option.value}>
                     {option.label}
                   </MenuItem>
@@ -368,58 +173,14 @@ class CreateFarmer extends React.Component {
             <Grid item xs={6} sm={6}>
               <TextField
                 required
-                id="mmPayment"
+                id="brand"
                 select
-                name="mmPayment"
-                value={this.state.mmPayment}
+                name="brand"
+                value={this.state.brand}
                 onChange={this.onChange}
-                label="Receive payments on MM*"
+                label="Brand"
                 fullWidth
-                helperText="Please select option"
-                InputLabelProps={{
-                  shrink: true
-                }}
-              >
-                {mmPayments.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Grid>
-            <Grid item xs={6} sm={6}>
-              <TextField
-                required
-                id="district"
-                select
-                name="district"
-                value={this.state.district}
-                onChange={this.onChangeDistrict}
-                label="District"
-                fullWidth
-                helperText="Please select district"
-                InputLabelProps={{
-                  shrink: true
-                }}
-              >
-                {districts.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Grid>
-            <Grid item xs={6} sm={6}>
-              <TextField
-                required
-                id="traditionalAuthority"
-                select
-                name="traditionalAuthority"
-                value={this.state.traditionalAuthority}
-                onChange={this.onChange}
-                label="Traditional Authority"
-                fullWidth
-                helperText="Please select Traditional Authority"
+                helperText="Please select the Brand"
                 InputLabelProps={{
                   shrink: true
                 }}
@@ -437,22 +198,6 @@ class CreateFarmer extends React.Component {
               </Typography>
             </Grid>
 
-            <Grid item xs={6} sm={6}>
-              <TextField
-                required
-                id="yearOpened"
-                name="yearOpened"
-                value={yearOpened}
-                onChange={this.onChange}
-                label="Year farm opened"
-                type="date"
-                fullWidth
-                autoComplete="off"
-                InputLabelProps={{
-                  shrink: true
-                }}
-              />
-            </Grid>
             <Grid item xs={6} sm={6}>
               <TextField
                 required

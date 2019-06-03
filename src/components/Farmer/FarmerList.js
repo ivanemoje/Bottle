@@ -35,35 +35,35 @@ const columns = [
     }
   },
   {
-    name: "Title",
+    name: "Drink",
     options: {
       filter: true,
       sort: true
     }
   },
   {
-    name: "Sex",
+    name: "Brand",
     options: {
       filter: true,
       sort: true
     }
   },
   {
-    name: "Marital Status",
+    name: "Stock 1",
     options: {
       filter: true,
       sort: true
     }
   },
   {
-    name: "Traditional Authority",
+    name: "Stock 2",
     options: {
       filter: true,
       sort: true
     }
   },
   {
-    name: "District",
+    name: "Stock 3",
     options: {
       filter: true,
       sort: true
@@ -94,188 +94,43 @@ const styles = {
   }
 };
 
-const titles = [
+const drinks = [
   {
-    value: "Prof",
-    label: "Prof"
+    value: "Beer",
+    label: "Beer"
   },
   {
-    value: "Dr",
-    label: "Dr"
-  },
-  {
-    value: "Mr",
-    label: "Mr"
-  },
-  {
-    value: "Ms",
-    label: "Ms"
-  },
-  {
-    value: "Mrs",
-    label: "Mrs"
-  },
-  {
-    value: "Col",
-    label: "Col"
-  },
-  {
-    value: "Capt",
-    label: "Capt"
-  }
-];
-
-const genders = [
-  {
-    value: "Male",
-    label: "Male"
-  },
-  {
-    value: "Female",
-    label: "Female"
-  }
-];
-
-const maritalStatuses = [
-  {
-    value: "Married",
-    label: "Married"
-  },
-  {
-    value: "Single",
-    label: "Single"
-  },
-  {
-    value: "Widowed",
-    label: "Widowed"
-  },
-  {
-    value: "Separated",
-    label: "Separated"
-  }
-];
-
-const districts = [
-  {
-    value: "Chitipa",
-    label: "Chitipa"
-  },
-  {
-    value: "Rumphi",
-    label: "Rumphi"
-  },
-  {
-    value: "Nkhatabay",
-    label: "Nkhatabay"
-  },
-  {
-    value: "Mzimba",
-    label: "Mzimba"
-  },
-  {
-    value: "Ntchisi",
-    label: "Ntchisi"
+    value: "Soda",
+    label: "Soda"
   }
 ];
 
 const lookup = {
-  Chitipa: [
-    { id: "1", value: "Kameme", label: "Kameme" },
-    { id: "2", value: "Mwabulambya", label: "Mwabulambya" },
-    { id: "3", value: "Mwenemisuku", label: "Mwenemisuku" },
-    { id: "4", value: "Mwenewenya", label: "Mwenewenya" },
-    { id: "5", value: "Nthalire", label: "Nthalire" }
+  Beer: [
+    { id: "1", text: "Kameme" },
+    { id: "2", text: "Mwabulambya" },
+    { id: "3", text: "Mwenemisuku" },
+    { id: "4", text: "Mwenewenya" },
+    { id: "5", text: "Nthalire" }
   ],
-  Mzimba: [
-    { id: "1", value: "Chasefu", label: "Chasefu" },
-    { id: "2", value: "Chibanja", label: "Chibanja" },
-    { id: "3", value: "Chindi", label: "Chindi" },
-    { id: "4", value: "Chiputula", label: "Chiputula" },
-    { id: "5", value: "Jaravikuba Munthali", label: "Jaravikuba Munthali" },
-    { id: "6", value: "Jombo", label: "Jombo" },
-    { id: "7", value: "Kampingo Sibande", label: "Kampingo Sibande" },
-    { id: "8", value: "Kaning'ina", label: "Kaning'ina" },
-    { id: "9", value: "Katawa", label: "Katawa" },
-    { id: "10", value: "Katoto", label: "Katoto" },
-    { id: "11", value: "Khosolo Gwaza Jere", label: "Khosolo Gwaza Jere" },
-    { id: "12", value: "Lupaso", label: "Lupaso" },
-    { id: "13", value: "M'Mbelwa", label: "M'Mbelwa" },
-    { id: "14", value: "Mabulabo", label: "Mabulabo" },
-    { id: "15", value: "Masasa", label: "Masasa" },
-    { id: "16", value: "Mchengautuwa", label: "Mchengautuwa" },
-    { id: "17", value: "Msongwe", label: "Msongwe" },
-    { id: "18", value: "Mtwalo", label: "Mtwalo" },
-    { id: "19", value: "Mzilawaingwe", label: "Mzilawaingwe" },
-    { id: "20", value: "Mzimba Boma", label: "Mzimba Boma" },
-    { id: "21", value: "Mzukuzuku", label: "Mzukuzuku" },
-    { id: "22", value: "Mzuzu City", label: "Mzuzu City" },
-    { id: "23", value: "New Aiport Site", label: "New Aiport Site" },
-    { id: "24", value: "Nkhorongo", label: "Nkhorongo" },
-    { id: "25", value: "Viphya", label: "Viphya" },
-    { id: "26", value: "Vwaza Marsh", label: "Vwaza Marsh" },
-    { id: "27", value: "Zolozolo", label: "Zolozolo" }
-  ],
-  Ntchisi: [
-    { id: "1", value: "Chikho", label: "Chikho" },
-    { id: "2", value: "Chilooko", label: "Chilooko" },
-    { id: "3", value: "Kalumo", label: "Kalumo" },
-    { id: "4", value: "Kasakula", label: "Kasakula" },
-    { id: "5", value: "Ntchisi Boma", label: "Ntchisi Boma" },
-    { id: "6", value: "Nthondo", label: "Nthondo" }
-  ],
-  Nkhatabay: [
-    { id: "1", value: "Boghoyo", label: "Boghoyo" },
-    { id: "2", value: "Fukamalaza", label: "Fukamalaza" },
-    { id: "3", value: "Fukamapiri", label: "Fukamapiri" },
-    { id: "4", value: "Kabuduli", label: "Kabuduli" },
-    { id: "5", value: "Malanda", label: "Malanda" },
-    { id: "6", value: "Malenga Mzoma", label: "Malenga Mzoma" },
-    { id: "7", value: "Mankhambira", label: "Mankhambira" },
-    { id: "8", value: "Mkondowe", label: "Mkondowe" },
-    { id: "9", value: "Mkumbira", label: "Mkumbira" },
-    { id: "10", value: "Musisya", label: "Musisya" },
-    { id: "11", value: "Nkhatabay Boma", label: "Nkhatabay Boma" },
-    { id: "12", value: "Nyaluwanga", label: "Nyaluwanga" },
-    { id: "13", value: "Timbiri", label: "Timbiri" },
-    { id: "14", value: "Zilakoma", label: "Zilakoma" }
-  ],
-
-  Rumphi: [
-    { id: "1", value: "Chikulamayembe", label: "Chikulamayembe" },
-    { id: "2", value: "Chipinduka", label: "Chipinduka" },
-    { id: "3", value: "Kachulu", label: "Kachulu" },
-    { id: "4", value: "Mwahenga", label: "Mwahenga" },
-    { id: "5", value: "Mwalweni", label: "Mwalweni" },
-    { id: "6", value: "Mwamlowe", label: "Mwamlowe" },
-    { id: "7", value: "Mwankhunikira", label: "Mwankhunikira" },
-    { id: "8", value: "Nyika National Park", label: "Nyika National Park" },
-    { id: "9", value: "Rumphi Boma", label: "Rumphi Boma" },
-    { id: "10", value: "Vwaza Game Reserve", label: "Vwaza Game Reserve" },
-    { id: "11", value: "Zolokere", label: "Zolokere" }
+  Soda: [
+    { id: "1", text: "Chikulamayembe" },
+    { id: "2", text: "Chipinduka" },
+    { id: "3", text: "Kachulu" },
+    { id: "4", text: "Mwahenga" },
+    { id: "5", text: "Mwalweni" },
+    { id: "6", text: "Mwamlowe" },
+    { id: "7", text: "Mwankhunikira" },
+    { id: "8", text: "Nyika National Park" },
+    { id: "9", text: "Rumphi Boma" },
+    { id: "10", text: "Vwaza Game Reserve" },
+    { id: "11", text: "Zolokere" }
   ]
 };
 
-const mmOptions = [
-  {
-    value: "Yes",
-    label: "Yes"
-  },
-  {
-    value: "No",
-    label: "No"
-  }
-];
 
-const mmPayments = [
-  {
-    value: "Yes",
-    label: "Yes"
-  },
-  {
-    value: "No",
-    label: "No"
-  }
-];
+
+
 class FarmerList extends React.Component {
   constructor(props) {
     super(props);
@@ -284,23 +139,17 @@ class FarmerList extends React.Component {
       open: false,
 
       key: "",
-      firstname: "",
-      lastname: "",
-      title: "",
-      sex: "",
-      maritalStatus: "",
-      phone: "",
-      mmRegistered: "",
-      mmPayment: "",
-      traditionalAuthority: "",
-      district: "",
+      // firstname: "",
+      // lastname: "",
 
-      yearOpened: "",
+      brand: "",
+      drink: "",
+
       matureTrees: "",
       immatureTrees: "",
       hectarage: "",
 
-      dataValue: "Chitipa"
+      dataValue: "Beer"
     };
 
     this.handleOpen = () => {
@@ -321,18 +170,13 @@ class FarmerList extends React.Component {
       for (let item in items) {
         newState.push({
           id: item,
-          firstname: items[item].firstname,
-          lastname: items[item].lastname,
-          title: items[item].title,
-          sex: items[item].sex,
-          maritalStatus: items[item].maritalStatus,
-          mmRegistered: items[item].mmRegistered,
-          mmPayment: items[item].mmPayment,
-          phone: items[item].phone,
-          traditionalAuthority: items[item].traditionalAuthority,
-          district: items[item].district,
 
-          yearOpened: items[item].yearOpened,
+          // firstname: items[item].firstname,
+          // lastname: items[item].lastname,
+
+          brand: items[item].brand,
+          drink: items[item].drink,
+
           matureTrees: items[item].matureTrees,
           immatureTrees: items[item].immatureTrees,
           hectarage: items[item].hectarage
@@ -340,9 +184,11 @@ class FarmerList extends React.Component {
       }
 
       //console.log(newState);
+
       this.setState({
         data: newState
       });
+
       //console.log(this.state.data);
     });
   }
@@ -362,18 +208,13 @@ class FarmerList extends React.Component {
 
       this.setState({
         key: snapshot.key,
-        firstname: snapshot.child("firstname").val(),
-        lastname: snapshot.child("lastname").val(),
-        sex: snapshot.child("sex").val(),
-        title: snapshot.child("title").val(),
-        maritalStatus: snapshot.child("maritalStatus").val(),
-        phone: snapshot.child("phone").val(),
-        mmRegistered: snapshot.child("mmRegistered").val(),
-        mmPayment: snapshot.child("mmPayment").val(),
-        traditionalAuthority: snapshot.child("traditionalAuthority").val(),
-        district: snapshot.child("district").val(),
 
-        yearOpened: snapshot.child("yearOpened").val(),
+        // firstname: snapshot.child("firstname").val(),
+        // lastname: snapshot.child("lastname").val(),
+
+        brand: snapshot.child("brand").val(),
+        drink: snapshot.child("drink").val(),
+
         matureTrees: snapshot.child("matureTrees").val(),
         immatureTrees: snapshot.child("immatureTrees").val(),
         hectarage: snapshot.child("hectarage").val()
@@ -398,18 +239,12 @@ class FarmerList extends React.Component {
 
     // get our form data out of state
     const farmer = {
-      firstname: this.capitalize(this.state.firstname),
-      lastname: this.capitalize(this.state.lastname),
-      title: this.state.title,
-      sex: this.state.sex,
-      maritalStatus: this.state.maritalStatus,
-      phone: this.state.phone,
-      mmRegistered: this.state.mmRegistered,
-      mmPayment: this.state.mmPayment,
-      district: this.state.district,
-      traditionalAuthority: this.state.traditionalAuthority,
+      // firstname: this.capitalize(this.state.firstname),
+      // lastname: this.capitalize(this.state.lastname),
 
-      yearOpened: this.state.yearOpened,
+      drink: this.state.drink,
+      brand: this.state.brand,
+      
       matureTrees: this.state.matureTrees,
       immatureTrees: this.state.immatureTrees,
       hectarage: this.state.hectarage
@@ -428,11 +263,11 @@ class FarmerList extends React.Component {
       });
   };
 
-  onChangeDistrict = e => {
+  onChangeDrink = e => {
     this.setState({
       dataValue: e.target.value,
-      district: e.target.value,
-      traditionalAuthority: ""
+      drink: e.target.value,
+      brand: ""
     });
     //console.log(e.target.value);
   };
@@ -450,7 +285,7 @@ class FarmerList extends React.Component {
     const { classes } = this.props;
 
     const { dataValue } = this.state;
-    const tradAuthorities = lookup[dataValue];
+    const brands = lookup[dataValue];
 
     const options = {
       filter: true,
@@ -503,24 +338,9 @@ class FarmerList extends React.Component {
           title={"Stock list"}
           data={data.map((farmer, index) => {
             return [
-              <Avatar className={classes.purpleAvatar}>
-                {this.CapitalizeInitial(farmer.firstname) +
-                  this.CapitalizeInitial(farmer.lastname)}
-              </Avatar>,
-              <Link
-                to={`/show/${farmer.id}`}
-                style={{
-                  color: "darkblue",
-                  textDecoration: "none"
-                }}
-              >
-                {farmer.firstname + " " + farmer.lastname}
-              </Link>,
-              farmer.title,
-              farmer.sex,
-              farmer.maritalStatus,
-              farmer.traditionalAuthority,
-              farmer.district,
+
+              farmer.brand,
+              farmer.drink,
 
               <IconButton
                 color="primary"
@@ -554,7 +374,7 @@ class FarmerList extends React.Component {
               align="center"
               style={{ color: "white" }}
             >
-              Edit Farmer
+              Edit Stock
             </Typography>
           </DialogTitle>
           <DialogContent>
@@ -564,8 +384,8 @@ class FarmerList extends React.Component {
                 Autobiography
               </Typography>
               <br />
-              <Grid container spacing={24}>
-                <Grid item xs={6} sm={6}>
+             <Grid container spacing={24}>
+                 {/*  <Grid item xs={6} sm={6}>
                   <TextField
                     required
                     id="firstname"
@@ -593,153 +413,25 @@ class FarmerList extends React.Component {
                     InputLabelProps={{
                       shrink: true
                     }}
-                  />
-                </Grid>
-                <Grid item xs={6} sm={6}>
-                  <TextField
-                    id="title"
-                    select
-                    name="title"
-                    value={this.state.title}
-                    onChange={this.onChange}
-                    label="Title*"
-                    fullWidth
-                    helperText="Please select title"
-                    InputLabelProps={{
-                      shrink: true
-                    }}
-                  >
-                    {titles.map(option => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-                <Grid item xs={6} sm={6}>
-                  <TextField
-                    id="sex"
-                    select
-                    name="sex"
-                    value={this.state.sex}
-                    onChange={this.onChange}
-                    label="Sex*"
-                    fullWidth
-                    helperText="Please select gender"
-                    InputLabelProps={{
-                      shrink: true
-                    }}
-                  >
-                    {genders.map(option => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-
-                <Grid item xs={6} sm={6}>
-                  <TextField
-                    id="maritalStatus"
-                    select
-                    name="maritalStatus"
-                    value={this.state.maritalStatus}
-                    onChange={this.onChange}
-                    label="Marital Status*"
-                    fullWidth
-                    helperText="Please select marital status"
-                    InputLabelProps={{
-                      shrink: true
-                    }}
-                  >
-                    {maritalStatuses.map(option => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-                <Grid item xs={6} sm={6}>
-                  <InputMask
-                    mask="(+265) 999 999 999"
-                    value={this.state.phone}
-                    onChange={this.onChange}
-                  >
-                    {() => (
-                      <TextField
-                        id="phone"
-                        name="phone"
-                        label="Phone"
-                        fullWidth
-                        helperText="For example: 772 123 456"
-                        autoComplete="phone"
-                        InputLabelProps={{
-                          shrink: true
-                        }}
-                      />
-                    )}
-                  </InputMask>
-                </Grid>
-
-                <Grid item xs={6} sm={6}>
-                  <TextField
-                    id="mmRegistered"
-                    select
-                    name="mmRegistered"
-                    value={this.state.mmRegistered}
-                    onChange={this.onChange}
-                    label="Mobile Money Registered*"
-                    fullWidth
-                    helperText="Please select option"
-                    InputLabelProps={{
-                      shrink: true
-                    }}
-                  >
-                    {mmOptions.map(option => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-                <Grid item xs={6} sm={6}>
-                  <TextField
-                    id="mmPayment"
-                    select
-                    name="mmPayment"
-                    value={this.state.mmPayment}
-                    onChange={this.onChange}
-                    label="Receive payments on MM*"
-                    fullWidth
-                    helperText="Please select option"
-                    InputLabelProps={{
-                      shrink: true
-                    }}
-                  >
-                    {mmPayments.map(option => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-
+                  /> 
+                </Grid> */}
+                
                 <Grid item xs={6} sm={6}>
                   <TextField
                     required
-                    id="district"
+                    id="drink"
                     select
-                    name="district"
-                    value={this.state.district}
-                    onChange={this.onChangeDistrict}
-                    label="District"
+                    name="drink"
+                    value={this.state.drink}
+                    onChange={this.onChangeDrink}
+                    label="Drink"
                     fullWidth
-                    helperText="Please select district"
+                    helperText="Please select drink"
                     InputLabelProps={{
                       shrink: true
                     }}
                   >
-                    {districts.map(option => (
+                    {drinks.map(option => (
                       <MenuItem key={option.value} value={option.value}>
                         {option.label}
                       </MenuItem>
@@ -749,19 +441,19 @@ class FarmerList extends React.Component {
                 <Grid item xs={6} sm={6}>
                   <TextField
                     required
-                    id="traditionalAuthority"
-                    name="traditionalAuthority"
-                    value={this.state.traditionalAuthority}
+                    id="brand"
+                    name="brand"
+                    value={this.state.brand}
                     select
                     onChange={this.onChange}
-                    label="Traditional Authority"
+                    label="Brand"
                     fullWidth
-                    helperText="Please select Traditional Authority"
+                    helperText="Please select Brand"
                     InputLabelProps={{
                       shrink: true
                     }}
                   >
-                    {tradAuthorities.map(ta => (
+                    {brands.map(ta => (
                       <MenuItem key={ta.id} value={ta.value}>
                         {ta.label}
                       </MenuItem>
@@ -775,22 +467,6 @@ class FarmerList extends React.Component {
                   </Typography>
                 </Grid>
 
-                <Grid item xs={6} sm={6}>
-                  <TextField
-                    required
-                    id="yearOpened"
-                    name="yearOpened"
-                    value={this.state.yearOpened}
-                    onChange={this.onChange}
-                    label="Year farm opened"
-                    type="date"
-                    fullWidth
-                    autoComplete="off"
-                    InputLabelProps={{
-                      shrink: true
-                    }}
-                  />
-                </Grid>
                 <Grid item xs={6} sm={6}>
                   <TextField
                     required
@@ -841,7 +517,7 @@ class FarmerList extends React.Component {
                     size="large"
                     color="secondary"
                   >
-                    Update Farmer
+                    Update Stock
                   </Button>
                 </Grid>
               </Grid>

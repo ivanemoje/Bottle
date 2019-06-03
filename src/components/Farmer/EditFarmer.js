@@ -11,94 +11,30 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 const styles = theme => ({});
 
-// const titles = [
-//   {
-//     value: "Beer",
-//     label: "Beer"
-//   },
-//   {
-//     value: "Soda",
-//     label: "Soda"
-//   }
-// ];
 
-const genders = [
+const drinks = [
   {
-    value: "Male",
-    label: "Male"
+    value: "Beer",
+    label: "Beer"
   },
   {
-    value: "Female",
-    label: "Female"
+    value: "Soda",
+    label: "Soda"
   }
 ];
 
-const maritalStatuses = [
-  {
-    value: "Married",
-    label: "Married"
-  },
-  {
-    value: "Single",
-    label: "Single"
-  },
-  {
-    value: "Widowed",
-    label: "Widowed"
-  },
-  {
-    value: "Separated",
-    label: "Separated"
-  }
-];
 
-const districts = [
-  {
-    value: "Chitipa",
-    label: "Chitipa"
-  },
-  {
-    value: "Rumphi",
-    label: "Rumphi"
-  }
-];
 
-const mmOptions = [
-  {
-    value: "Yes",
-    label: "Yes"
-  },
-  {
-    value: "No",
-    label: "No"
-  }
-];
 
-const mmPayments = [
-  {
-    value: "Yes",
-    label: "Yes"
-  },
-  {
-    value: "No",
-    label: "No"
-  }
-];
 
 class EditFarmer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: "",
-      lastname: "",
-      // title: "",
-      sex: "",
-      maritalStatus: "",
-      phone: "",
-      mmRegistered: "",
-      mmPayment: "",
-      traditionalAuthority: "",
-      district: ""
+      // firstname: "",
+      // lastname: "",
+      brand: "",
+      drink: ""
     };
   }
 
@@ -125,12 +61,12 @@ class EditFarmer extends React.Component {
 
           <form onSubmit={this.handleSubmit}>
             <Typography component="h1" variant="h4" align="center">
-              Edit Farmer
+              Edit Stock
             </Typography>
             <br />
 
             <Grid container spacing={24}>
-              <Grid item xs={6} sm={6}>
+             {/*  <Grid item xs={6} sm={6}>
                 <TextField
                   required
                   id="firstname"
@@ -159,151 +95,23 @@ class EditFarmer extends React.Component {
                     shrink: true
                   }}
                 />
-              </Grid>
-              {/* <Grid item xs={6} sm={6}>
-                <TextField
-                  id="title"
-                  select
-                  name="title"
-                  value={this.state.title}
-                  onChange={this.onChange}
-                  label="Title*"
-                  fullWidth
-                  helperText="Please select title"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                >
-                  {titles.map(option => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
               </Grid> */}
+             
               <Grid item xs={6} sm={6}>
                 <TextField
-                  id="sex"
+                  id="drink"
                   select
-                  name="sex"
-                  value={this.state.sex}
+                  name="drink"
+                  value={this.state.drink}
                   onChange={this.onChange}
-                  label="Sex*"
+                  label="Drink*"
                   fullWidth
-                  helperText="Please select gender"
+                  helperText="Please select drink"
                   InputLabelProps={{
                     shrink: true
                   }}
                 >
-                  {genders.map(option => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              </Grid>
-
-              <Grid item xs={6} sm={6}>
-                <TextField
-                  id="maritalStatus"
-                  select
-                  name="maritalStatus"
-                  value={this.state.maritalStatus}
-                  onChange={this.onChange}
-                  label="Marital Status*"
-                  fullWidth
-                  helperText="Please select marital status"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                >
-                  {maritalStatuses.map(option => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              </Grid>
-              <Grid item xs={6} sm={6}>
-                <InputMask
-                  mask="(+265) 999 999 999"
-                  value={this.state.phone}
-                  onChange={this.onChange}
-                >
-                  {() => (
-                    <TextField
-                      id="phone"
-                      name="phone"
-                      label="Phone"
-                      fullWidth
-                      helperText="For example: 772 123 456"
-                      autoComplete="phone"
-                      InputLabelProps={{
-                        shrink: true
-                      }}
-                    />
-                  )}
-                </InputMask>
-              </Grid>
-
-              <Grid item xs={6} sm={6}>
-                <TextField
-                  id="mmRegistered"
-                  select
-                  name="mmRegistered"
-                  value={this.state.mmRegistered}
-                  onChange={this.onChange}
-                  label="Mobile Money Registered*"
-                  fullWidth
-                  helperText="Please select option"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                >
-                  {mmOptions.map(option => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              </Grid>
-              <Grid item xs={6} sm={6}>
-                <TextField
-                  id="mmPayment"
-                  select
-                  name="mmPayment"
-                  value={this.state.mmPayment}
-                  onChange={this.onChange}
-                  label="Receive payments on MM*"
-                  fullWidth
-                  helperText="Please select option"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                >
-                  {mmPayments.map(option => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              </Grid>
-
-              <Grid item xs={6} sm={6}>
-                <TextField
-                  id="district"
-                  select
-                  name="district"
-                  value={this.state.district}
-                  onChange={this.onChange}
-                  label="District*"
-                  fullWidth
-                  helperText="Please select district"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                >
-                  {districts.map(option => (
+                  {drinks.map(option => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
                     </MenuItem>
@@ -314,11 +122,11 @@ class EditFarmer extends React.Component {
               <Grid item xs={6} sm={6}>
                 <TextField
                   required
-                  id="traditionalAuthority"
-                  name="traditionalAuthority"
-                  value={this.state.traditionalAuthority}
+                  id="brand"
+                  name="brand"
+                  value={this.state.brand}
                   onChange={this.onChange}
-                  label="Traditional Authority"
+                  label="Brand"
                   fullWidth
                   autoComplete="off"
                   InputLabelProps={{
@@ -334,7 +142,7 @@ class EditFarmer extends React.Component {
                   size="large"
                   color="primary"
                 >
-                  Update Farmer
+                  Update Stock
                 </Button>
               </Grid>
             </Grid>

@@ -80,17 +80,11 @@ class FarmerDetails extends React.Component {
     super(props);
     this.state = {
       id: "",
-      firstname: "",
-      lastname: "",
-      title: "",
-      sex: "",
-      maritalStatus: "",
-      phone: "",
-      mmRegistered: "",
-      mmPayment: "",
-      traditionalAuthority: "",
-      district: "",
-      yearOpened: "",
+      // firstname: "",
+      // lastname: "",
+      brand: "",
+      drink: "",
+      
       matureTrees: "",
       immatureTrees: "",
       hectarage: "",
@@ -213,37 +207,24 @@ class FarmerDetails extends React.Component {
     const farmersRef = firebase.database().ref(`farmers/${key}`);
     farmersRef.on("value", snapshot => {
       // handle read data.
-      const firstname = snapshot.child("firstname").val();
-      const lastname = snapshot.child("lastname").val();
-      const title = snapshot.child("title").val();
-      const sex = snapshot.child("sex").val();
-      const maritalStatus = snapshot.child("maritalStatus").val();
+      // const firstname = snapshot.child("firstname").val();
+      // const lastname = snapshot.child("lastname").val();
+      
+      const brand = snapshot.child("brand").val();
+      const drink = snapshot.child("drink").val();
 
-      const phone = snapshot.child("phone").val();
-      const mmRegistered = snapshot.child("mmRegistered").val();
-      const mmPayment = snapshot.child("mmPayment").val();
-
-      const traditionalAuthority = snapshot.child("traditionalAuthority").val();
-      const district = snapshot.child("district").val();
-
-      const yearOpened = snapshot.child("yearOpened").val();
       const matureTrees = snapshot.child("matureTrees").val();
       const immatureTrees = snapshot.child("immatureTrees").val();
       const hectarage = snapshot.child("hectarage").val();
 
       this.setState({
         id: key,
-        firstname: firstname,
-        lastname: lastname,
-        title: title,
-        sex: sex,
-        maritalStatus: maritalStatus,
-        phone: phone,
-        mmRegistered: mmRegistered,
-        mmPayment: mmPayment,
-        traditionalAuthority: traditionalAuthority,
-        district: district,
-        yearOpened: yearOpened,
+        // firstname: firstname,
+        // lastname: lastname,
+
+        brand: brand,
+        drink: drink,
+
         matureTrees: matureTrees,
         immatureTrees: immatureTrees,
         hectarage: hectarage,
@@ -344,15 +325,13 @@ class FarmerDetails extends React.Component {
                   style={{ fontWeight: "bold" }}
                 >
                   {this.state.title}.{" "}
-                  {this.state.firstname + " " + this.state.lastname}
+                  {/* {this.state.firstname + " " + this.state.lastname} */}
                 </Typography>
                 <Typography variant="body1" gutterBottom align="center">
-                  Lives in {this.state.traditionalAuthority},{" "}
-                  {this.state.district}
+                  Lives in {this.state.brand},{" "}
+                  {this.state.drink}
                 </Typography>
-                <Typography variant="body1" gutterBottom align="center">
-                  Farm opened in <b>{this.state.yearOpened}</b>
-                </Typography>
+               
                 <br />
                 <Grid container spacing={24}>
                   <Grid item xs={4} sm={4}>
@@ -410,42 +389,9 @@ class FarmerDetails extends React.Component {
               </Fab>
               <br />
               <br />
-              <Grid container spacing={24}>
-                <Grid item xs={5} sm={5}>
-                  <Typography variant="body1" gutterBottom align="left">
-                    Gender:
-                  </Typography>
-                  <Typography variant="body1" gutterBottom align="left">
-                    Marital status:
-                  </Typography>
-                  <Typography variant="body1" gutterBottom align="left">
-                    Mobile:
-                  </Typography>
-                  <Typography variant="body1" gutterBottom align="left">
-                    MM Registered?:
-                  </Typography>
-                  <Typography variant="body1" gutterBottom align="left">
-                    Payments via MM?:
-                  </Typography>
-                </Grid>
-                <Grid item xs={7} sm={7}>
-                  <Typography variant="body1" gutterBottom align="left">
-                    {this.state.sex}
-                  </Typography>
-                  <Typography variant="body1" gutterBottom align="left">
-                    {this.state.maritalStatus}
-                  </Typography>
-                  <Typography variant="body1" gutterBottom align="left">
-                    {this.state.phone}
-                  </Typography>
-                  <Typography variant="body1" gutterBottom align="left">
-                    {this.state.mmRegistered}
-                  </Typography>
-                  <Typography variant="body1" gutterBottom align="left">
-                    {this.state.mmPayment}
-                  </Typography>
-                </Grid>
-              </Grid>
+       
+             
+        
               <br />
 
               <br />
