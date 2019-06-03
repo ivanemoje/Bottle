@@ -85,7 +85,7 @@ class FarmHistoryStatus extends React.Component {
                     variant="headline"
                     gutterBottom
                     align="center"
-                    color="Primary"
+                    color="primary"
                   >
                     {this.state.hectarage}
                   </Typography>
@@ -98,7 +98,7 @@ class FarmHistoryStatus extends React.Component {
                     variant="headline"
                     gutterBottom
                     align="center"
-                    color="Primary"
+                    color="primary"
                   >
                     {this.state.mature}
                   </Typography>
@@ -111,7 +111,7 @@ class FarmHistoryStatus extends React.Component {
                     variant="headline"
                     gutterBottom
                     align="center"
-                    color="Primary"
+                    color="primary"
                   >
                     {this.state.immature}
                   </Typography>

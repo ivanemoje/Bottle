@@ -88,7 +88,7 @@ class RegistrationSummary extends React.Component {
                     variant="headline"
                     gutterBottom
                     align="center"
-                    color="Primary"
+                    color="primary"
                   >
                     {this.state.numOfFarmers}
                   </Typography>
@@ -101,7 +101,7 @@ class RegistrationSummary extends React.Component {
                     variant="headline"
                     gutterBottom
                     align="center"
-                    color="Primary"
+                    color="primary"
                   >
                     {this.state.males}
                   </Typography>
@@ -114,7 +114,7 @@ class RegistrationSummary extends React.Component {
                     variant="headline"
                     gutterBottom
                     align="center"
-                    color="Primary"
+                    color="primary"
                   >
                     {this.state.females}
                   </Typography>

@@ -47,7 +47,7 @@ class CustomToolbar extends React.Component {
       <React.Fragment>
         <Tooltip title={"Register Stock"}>
           <IconButton className={classes.iconButton} onClick={this.handleOpen}>
-            <PersonAddIcon color="default" className={classes.addIcon} />
+            <PersonAddIcon color="primary" className={classes.addIcon} />
           </IconButton>
         </Tooltip>
 

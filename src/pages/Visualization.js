@@ -40,16 +40,15 @@ class Visualization extends React.Component {
         </Typography>
         <br />
         <Grid container spacing={24}>
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <RegistrationSummary />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <FarmHistoryStatus />
           </Grid>
-          <Grid item xs={4}>
+          {/* <Grid item xs={4}>
             <AdvancesSummary />
-          </Grid>
-          {/*
+          </Grid> 
           <Grid item xs={3}>
             <ProcurementSummary />
           </Grid>
@@ -69,7 +68,7 @@ class Visualization extends React.Component {
               <BarChart />
             </Paper>
           </Grid>
-          */}
+          
         </Grid>
         <br />
         <Typography variant="headline" align="center">
@@ -100,7 +99,7 @@ class Visualization extends React.Component {
           <Grid item xs={6} />
 
           <br />
-
+*/}
           <br />
         </Grid>
       </div>

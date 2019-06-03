@@ -98,7 +98,7 @@ class AdvancesSummary extends React.Component {
                     variant="headline"
                     gutterBottom
                     align="center"
-                    color="Primary"
+                    color="primary"
                   >
                     {this.state.received}
                   </Typography>
@@ -111,7 +111,7 @@ class AdvancesSummary extends React.Component {
                     variant="headline"
                     gutterBottom
                     align="center"
-                    color="Primary"
+                    color="primary"
                   >
                     {this.state.value}
                   </Typography>
@@ -124,7 +124,7 @@ class AdvancesSummary extends React.Component {
                     variant="headline"
                     gutterBottom
                     align="center"
-                    color="Primary"
+                    color="primary"
                   >
                     {this.state.weight}
                   </Typography>
