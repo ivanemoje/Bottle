@@ -28,54 +28,48 @@ import DialogContent from "@material-ui/core/DialogContent";
 const columns = [
   "",
   {
-    name: "Fullname",
+    name: "Bar",
     options: {
       filter: false,
       sort: false
     }
   },
   {
-    name: "Address",
+    name: "Drink",
     options: {
       filter: true,
       sort: true
     }
   },
   {
-    name: "Goods Purchased",
+    name: "Brand",
     options: {
       filter: true,
       sort: true
     }
   },
   {
-    name: "Phone",
+    name: "Unit Price ",
     options: {
       filter: true,
       sort: true
     }
   },
   {
-    name: "Unit Price",
+    name: "Quantity Sold ",
     options: {
       filter: true,
       sort: true
     }
   },
   {
-    name: "Quantity",
+    name: "Total Price",
     options: {
       filter: true,
       sort: true
     }
   },
-  {
-    name: "Total price",
-    options: {
-      filter: true,
-      sort: true
-    }
-  },
+ 
   {
     name: "Actions",
     options: {
@@ -357,10 +351,10 @@ class SalesList extends React.Component {
               >
                 {sale.bar}
               </Link>,
-              sale.unitPrice,
-              sale.quantity,
               sale.drink,
               sale.brand,
+              sale.unitPrice,
+              sale.quantity,
               sale.totalPrice,
     
               <IconButton
@@ -390,7 +384,7 @@ class SalesList extends React.Component {
             style={{ backgroundColor: "navy" }}
           >
             <Typography
-              component="h1"
+              component="h2"
               variant="display1"
               align="center"
               style={{ color: "white" }}
