@@ -13,6 +13,7 @@ import ProcurementList from "./components/procurement/ProcurementList";
 import AdvancesList from "./components/advances/AdvancesList";
 
 import SalesList from "./components/sales/SalesList";
+import PriceList from "./components/price/PriceList";
 
 import GeneralSettings from "./components/settings/GeneralSettings";
 
@@ -43,6 +44,7 @@ const App = ({ classes }) => (
         <Route path="/procurement" component={ProcurementList} />
         <Route path="/advances" component={AdvancesList} />
         <Route path="/sales" component={SalesList} />
+        <Route path="/price" component={PriceList} />
 
         <Route path="/reports" />
         <Route path="/settings" component={GeneralSettings} />

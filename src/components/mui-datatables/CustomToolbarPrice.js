@@ -11,11 +11,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { Typography } from "@material-ui/core";
 
-import { Switch, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 
-import CreateFarmer from "../Farmer/CreateFarmer";
-import CreateProcurement from "../procurement/CreateProcurement";
-import CreateSale from "../sales/CreateSale";
 import CreatePrice from "../price/CreatePrice";
 
 const styles = theme => ({
@@ -64,21 +61,16 @@ class CustomToolbar extends React.Component {
             }}
           >
             <Typography
-              component="h3"
+              component="h1"
               variant="display1"
               align="center"
               style={{ color: "white" }}
             >
-              Register Farmer
+              Add Price
             </Typography>
           </DialogTitle>
           <DialogContent>
-            <Switch>
-              <Route path="/farmers" component={CreateFarmer} />
-              <Route path="/procurement" component={CreateProcurement} />
-              <Route path="/sales" component={CreateSale} />
-              <Route path="/price" component={CreatePrice} />
-            </Switch>
+            <Route path="/price" component={CreatePrice} />
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">

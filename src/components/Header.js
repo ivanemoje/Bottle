@@ -232,21 +232,27 @@ class Header extends React.Component {
                     </Button>
                   </Link>
 
-                  <Link to="/advances" className={classes.link}>
+                  {/* <Link to="/advances" className={classes.link}>
                     <Button color="inherit" className={classes.menuButton}>
                       Price
                     </Button>
-                  </Link>
+                  </Link> */}
 
-                  <Link to="/procurement" className={classes.link}>
+                  {/* <Link to="/procurement" className={classes.link}>
                     <Button color="inherit" className={classes.menuButton}>
                       Expenses?
                     </Button>
-                  </Link>
+                  </Link> */}
 
                   <Link to="/sales" className={classes.link}>
                     <Button color="inherit" className={classes.menuButton}>
                       Bar Sales
+                    </Button>
+                  </Link>
+
+                  <Link to="/price" className={classes.link}>
+                    <Button color="inherit" className={classes.menuButton}>
+                      Price List
                     </Button>
                   </Link>
 
