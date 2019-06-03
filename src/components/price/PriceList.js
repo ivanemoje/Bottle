@@ -171,12 +171,9 @@ class PriceList extends React.Component {
 
       this.setState({
         key: snapshot.key,
-        // bar: snapshot.child("bar").val(),
         unitPrice: snapshot.child("unitPrice").val(),
-        // quantity: snapshot.child("quantity").val(),
         drink: snapshot.child("drink").val(),
         brand: snapshot.child("brand").val(),
-        // totalPrice: snapshot.child("totalPrice").val()
       });
     });
     console.log(
@@ -204,12 +201,9 @@ class PriceList extends React.Component {
 
     // get our form data out of state
     const price = {
-      // bar: this.state.bar,
       unitPrice: this.state.unitPrice,
-      // quantity: this.state.quantity,
       drink: this.state.drink,
       brand: this.state.brand,
-      // totalPrice: this.state.totalPrice
     };
 
     //Update farmer module

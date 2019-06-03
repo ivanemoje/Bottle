@@ -72,7 +72,7 @@ class CreateSale extends React.Component {
       unitPrice: "",
       quantity: "",
       drink: "",
-      detail: "",
+      brand: "",
       totalPrice: "",
       dataValue: "Beer"
     };
@@ -86,7 +86,7 @@ class CreateSale extends React.Component {
     this.setState({
       dataValue: e.target.value,
       drink: e.target.value,
-      detail: ""
+      brand: ""
     });
     console.log(e.target.value);
   };
@@ -115,7 +115,7 @@ class CreateSale extends React.Component {
     // get our form data out of state
     const sale = {
       drink: this.state.drink,
-      detail: this.state.detail,
+      brand: this.state.brand,
       bar: this.state.bar,
       // goodsPurchased: this.state.goodsPurchased,
       // phone: this.state.phone,
@@ -136,7 +136,7 @@ class CreateSale extends React.Component {
     salesRef.push(sale);
     this.setState({
       drink: "",
-      detail: "",
+      brand: "",
       bar: "",
       // goodsPurchased: "",
       // phone: "",
@@ -148,11 +148,6 @@ class CreateSale extends React.Component {
 
   render() {
     const {
-      // drink,
-      // detail,
-      // bar,
-      // goodsPurchased,
-      // phone,
       unitPrice,
       quantity,
       totalPrice
@@ -179,9 +174,9 @@ class CreateSale extends React.Component {
                 name="drink"
                 value={this.state.drink}
                 onChange={this.onChangeDrink}
-                label="drink"
+                label="Drink"
                 fullWidth
-                helperText="Please select drink"
+                helperText="Please select Drink"
                 InputLabelProps={{
                   shrink: true
                 }}
@@ -196,14 +191,14 @@ class CreateSale extends React.Component {
             <Grid item xs={6} sm={6}>
               <TextField
                 required
-                id="detail"
+                id="brand"
                 select
-                name="detail"
-                value={this.state.detail}
+                name="brand"
+                value={this.state.brand}
                 onChange={this.onChange}
-                label="detail"
+                label="Brand"
                 fullWidth
-                helperText="Please select detail"
+                helperText="Please select Brand"
                 InputLabelProps={{
                   shrink: true
                 }}

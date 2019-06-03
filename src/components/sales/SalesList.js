@@ -163,7 +163,7 @@ class SalesList extends React.Component {
       unitPrice: "",
       quantity: "",
       drink: "",
-      detail: "",
+      brand: "",
       totalPrice: "",
 
       dataValue: "Beer"
@@ -191,7 +191,7 @@ class SalesList extends React.Component {
           unitPrice: items[item].unitPrice,
           quantity: items[item].quantity,
           drink: items[item].drink,
-          detail: items[item].detail,
+          brand: items[item].brand,
           totalPrice: items[item].totalPrice
         });
       }
@@ -221,7 +221,7 @@ class SalesList extends React.Component {
         unitPrice: snapshot.child("unitPrice").val(),
         quantity: snapshot.child("quantity").val(),
         drink: snapshot.child("drink").val(),
-        detail: snapshot.child("detail").val(),
+        brand: snapshot.child("brand").val(),
         totalPrice: snapshot.child("totalPrice").val()
       });
     });
@@ -254,8 +254,8 @@ class SalesList extends React.Component {
       unitPrice: this.state.unitPrice,
       quantity: this.state.quantity,
       drink: this.state.drink,
-      detail: this.state.detail,
-      totalPrice: this.state.totalPrice
+      brand: this.state.brand,
+      totalPrice: this.state.totalPrice,
     };
 
     //Update farmer module
@@ -276,7 +276,7 @@ class SalesList extends React.Component {
     this.setState({
       dataValue: e.target.value,
       drink: e.target.value,
-      detail: ""
+      brand: ""
     });
     console.log(e.target.value);
   };
@@ -299,7 +299,7 @@ class SalesList extends React.Component {
     const {
       open,
       drink,
-      detail,
+      brand,
       bar,
       unitPrice,
       quantity,
@@ -360,7 +360,7 @@ class SalesList extends React.Component {
               sale.unitPrice,
               sale.quantity,
               sale.drink,
-              sale.detail,
+              sale.brand,
               sale.totalPrice,
     
               <IconButton
@@ -434,14 +434,14 @@ class SalesList extends React.Component {
             <Grid item xs={6} sm={6}>
               <TextField
                 required
-                id="detail"
+                id="brand"
                 select
-                name="detail"
-                value={detail}
+                name="brand"
+                value={brand}
                 onChange={this.onChange}
-                label="detail"
+                label="Brand"
                 fullWidth
-                helperText="Please select detail"
+                helperText="Please select Brand"
                 InputLabelProps={{
                   shrink: true
                 }}
