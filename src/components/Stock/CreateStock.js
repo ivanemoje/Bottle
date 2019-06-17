@@ -77,6 +77,13 @@ class CreateStock extends React.Component {
     console.log(e.target.value);
   };
 
+
+  handleCalculateTotalPrice = () => {
+    this.setState({
+      hectarage: this.state.matureTrees - this.state.immatureTrees
+    });
+  };
+
   onChange = e => {
     /*
           Because we named the inputs to match their
@@ -204,7 +211,8 @@ class CreateStock extends React.Component {
                 name="matureTrees"
                 value={matureTrees}
                 onChange={this.onChange}
-                label="Number of mature trees"
+                label="Opening Stock"
+                helperText="(Enter Figure)"
                 type="number"
                 fullWidth
                 autoComplete="off"
@@ -217,8 +225,8 @@ class CreateStock extends React.Component {
                 name="immatureTrees"
                 value={immatureTrees}
                 onChange={this.onChange}
-                label="Number of immature trees"
-                helperText="(below 3 years)"
+                label="Closing Stock "
+                helperText="(Enter Figure)"
                 type="number"
                 fullWidth
                 autoComplete="off"
@@ -231,9 +239,9 @@ class CreateStock extends React.Component {
                 id="hectarage"
                 name="hectarage"
                 value={hectarage}
-                onChange={this.onChange}
-                label="Hectarage under cultivation"
-                helperText="(Enter in Acres)"
+                onClick={this.handleCalculateTotalPrice}
+                label="Stock Sold "
+                helperText="(Enter Figure)"
                 type="number"
                 fullWidth
                 autoComplete="off"

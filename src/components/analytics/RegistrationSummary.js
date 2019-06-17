@@ -69,7 +69,7 @@ class RegistrationSummary extends React.Component {
           <Card className={classes.card}>
             <CardContent align="center">
               <Typography variant="headline" align="center" color="default">
-                Registered Farmers
+                Saved Stock Summary
               </Typography>
               <br />
               <Avatar
@@ -82,7 +82,7 @@ class RegistrationSummary extends React.Component {
               <Grid container spacing={24}>
                 <Grid item xs={4} sm={4}>
                   <Typography variant="title" gutterBottom align="center">
-                    Farmers
+                    Total
                   </Typography>
                   <Typography
                     variant="headline"
@@ -95,7 +95,7 @@ class RegistrationSummary extends React.Component {
                 </Grid>
                 <Grid item xs={4} sm={4}>
                   <Typography variant="title" gutterBottom align="center">
-                    Male
+                    Beers
                   </Typography>
                   <Typography
                     variant="headline"
@@ -108,7 +108,7 @@ class RegistrationSummary extends React.Component {
                 </Grid>
                 <Grid item xs={4} sm={4}>
                   <Typography variant="title" gutterBottom align="center">
-                    Female
+                    Sodas
                   </Typography>
                   <Typography
                     variant="headline"
