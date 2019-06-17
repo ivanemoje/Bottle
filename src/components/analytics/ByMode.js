@@ -29,17 +29,18 @@ class ByMode extends React.Component {
   constructor() {
     super();
     this.state = {
+      totalPriceOne: 0,
+      totalPriceTwo: 0,
+      totalPriceThree: 0,
       chartOptions: {
         xAxis: {
           title: {
-            text: "Commodities"
+            text: "Bars"
           },
           categories: [
-            "Money",
-            "Seedlings",
-            "Fertilizers",
-            "Chemicals",
-            "Polythene"
+            "Bar 1",
+            "Bar 2",
+            "Bar 3"
           ]
         },
         chart: {
@@ -52,7 +53,7 @@ class ByMode extends React.Component {
           }
         },
         title: {
-          text: "Mode of Advances"
+          text: "Bar Performance"
         },
         series: [{ data: [] }]
       }
@@ -60,68 +61,87 @@ class ByMode extends React.Component {
   }
 
   componentDidMount() {
-    // Get value of advances provided
-    const query = firebase
-      .database()
-      .ref("advances")
-      .orderByKey();
-    query.on("value", snapshot => {
-      let seedlingCounter = 0;
-      let fertilizerCounter = 0;
-      let chemicalCounter = 0;
-      let polytheneCounter = 0;
-      let moneyCounter = 0;
 
-      snapshot.forEach(childSnapshot => {
-        // Get values
-        childSnapshot.forEach(grandChildSnapshot => {
-          const isSeedling =
-            grandChildSnapshot.child("commodityAdvanced").val() === "Seedlings";
+    const query_bar_one = firebase
+    .database()
+    .ref("sales")
+    .orderByChild("bar")
+    .equalTo('Bar 1');
 
-          const isFertilizer =
-            grandChildSnapshot.child("commodityAdvanced").val() ===
-            "Fertilizer";
-
-          const isChemicals =
-            grandChildSnapshot.child("commodityAdvanced").val() === "Chemicals";
-
-          const isPolythene =
-            grandChildSnapshot.child("commodityAdvanced").val() ===
-            "Polythene tubes";
-
-          const isMoney =
-            grandChildSnapshot.child("commodityAdvanced").val() === "";
-
-          if (isSeedling) {
-            seedlingCounter += 1;
-          } else if (isFertilizer) {
-            fertilizerCounter += 1;
-          } else if (isChemicals) {
-            chemicalCounter += 1;
-          } else if (isPolythene) {
-            polytheneCounter += 1;
-          } else if (isMoney) {
-            moneyCounter += 1;
-          }
-        });
+    query_bar_one.on("value", snapshot => {
+      let totalPriceOne = 0;
+      snapshot.forEach(function(childSnapshot) {
+        const totalPriceValue1 =  childSnapshot.child("totalPrice").val();
+        totalPriceOne = totalPriceValue1;
       });
       this.setState({
-        chartOptions: {
-          series: [
-            {
-              data: [
-                moneyCounter,
-                seedlingCounter,
-                fertilizerCounter,
-                chemicalCounter,
-                polytheneCounter
-              ]
-            }
-          ]
-        }
-      });
+        totalPriceOne: totalPriceOne
+  
+      }          , function () {
+        console.log("total One: "+this.state.totalPriceOne);
     });
+    });
+
+    const query_bar_two = firebase
+    .database()
+    .ref("sales")
+    .orderByChild("bar")
+    .equalTo('Bar 2');
+
+    query_bar_two.on("value", snapshot => {
+      let totalPriceTwo = 0;
+      snapshot.forEach(function(childSnapshot) {
+        const totalPriceValue2 =  childSnapshot.child("totalPrice").val();
+        totalPriceTwo = totalPriceValue2;
+      });
+      this.setState({
+        totalPriceTwo: totalPriceTwo
+  
+      }          , function () {
+        console.log("total Two: "+this.state.totalPriceTwo);
+    });
+    });
+
+    const query_bar_three = firebase
+    .database()
+    .ref("sales")
+    .orderByChild("bar")
+    .equalTo('Bar 3');
+
+    query_bar_three.on("value", snapshot => {
+      let totalPriceThree = 0;
+      snapshot.forEach(function(childSnapshot) {
+        const totalPriceValue3 =  childSnapshot.child("totalPrice").val();
+        totalPriceThree = totalPriceValue3;
+      });
+      this.setState({
+        totalPriceThree: totalPriceThree
+      }
+          , function () {
+      console.log("total Three: "+this.state.totalPriceThree);
   }
+      );
+    });
+
+
+    // this.setState ({
+    //   chartOptions: {
+    //     series: [
+    //       {
+    //         data: [
+    //           totalPriceOne,
+    //           totalPriceTwo,
+    //           totalPriceThree
+    //         ]
+    //       }
+    //     ]
+    //   }
+    // });
+
+  
+
+  }
+
   render() {
     const { classes } = this.props;
     const { chartOptions } = this.state;

@@ -8,7 +8,8 @@ import Grid from "@material-ui/core/Grid";
 
 import SodaSummary from "../components/analytics/SodaSummary";
 import BeerSummary from "../components/analytics/BeerSummary";
-import AdvancesSummary from "../components/analytics/AdvancesSummary";
+import BarSummary from "../components/analytics/BarSummary";
+import AdvancesSummary from "../components/analytics/BarSummary";
 import ProcurementSummary from "../components/analytics/ProcurementSummary";
 import AdvancesReport from "../components/analytics/AdvancesReport";
 import AdvancesMode from "../components/analytics/AdvancesMode";
@@ -40,12 +41,20 @@ class Visualization extends React.Component {
         </Typography>
         <br />
         <Grid container spacing={24}>
+
           <Grid item xs={6}>
             <SodaSummary />
           </Grid>
+
           <Grid item xs={6}>
             <BeerSummary />
           </Grid>
+
+          <Grid item xs={6}>
+            <BarSummary />
+          </Grid>
+
+          
           {/* <Grid item xs={4}>
             <AdvancesSummary />
           </Grid> 

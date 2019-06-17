@@ -89,9 +89,7 @@ class SodaSummary extends React.Component {
       opening = opening_value;
       closing = closing_value;
       created = created_value;
-
-
-      console.log("Created: " + created);
+      // console.log("Created: " + created);
     });
 
     this.setState({
