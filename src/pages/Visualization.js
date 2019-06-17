@@ -6,8 +6,8 @@ import { Typography } from "@material-ui/core";
 
 import Grid from "@material-ui/core/Grid";
 
-import RegistrationSummary from "../components/analytics/RegistrationSummary";
-import FarmHistoryStatus from "../components/analytics/FarmHistoryStatus";
+import SodaSummary from "../components/analytics/SodaSummary";
+import BeerSummary from "../components/analytics/BeerSummary";
 import AdvancesSummary from "../components/analytics/AdvancesSummary";
 import ProcurementSummary from "../components/analytics/ProcurementSummary";
 import AdvancesReport from "../components/analytics/AdvancesReport";
@@ -41,10 +41,10 @@ class Visualization extends React.Component {
         <br />
         <Grid container spacing={24}>
           <Grid item xs={6}>
-            <RegistrationSummary />
+            <SodaSummary />
           </Grid>
           <Grid item xs={6}>
-            <FarmHistoryStatus />
+            <BeerSummary />
           </Grid>
           {/* <Grid item xs={4}>
             <AdvancesSummary />

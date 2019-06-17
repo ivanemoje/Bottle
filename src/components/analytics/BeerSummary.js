@@ -16,14 +16,15 @@ const styles = theme => ({
   }
 });
 
-//This is for Soda
-class RegistrationSummary extends React.Component {
+//This is for Beer
+class BeerSummary extends React.Component {
   constructor() {
     super();
     this.state = {
       sold: 0,
       opening: 0,
       closing: 0,
+      created: ""
 
     };
   }
@@ -64,7 +65,7 @@ class RegistrationSummary extends React.Component {
     .database()
     .ref("stock")
     .orderByChild("drink")
-    .equalTo('Soda')
+    .equalTo('Beer')
     .limitToLast(1);
     
     query_latest_soda.on("value", snapshot => {
@@ -72,16 +73,19 @@ class RegistrationSummary extends React.Component {
     let sold = 0;
     let opening = 0;
     let closing = 0;
+    let created = null;
 
     snapshot.forEach(function(childSnapshot) {
      
       const sold_value =  childSnapshot.child("sold").val();
       const opening_value =  childSnapshot.child("opening").val();
       const closing_value =  childSnapshot.child("closing").val();
+      const created_value =  childSnapshot.child("created").val();
 
       sold = sold_value;
       opening = opening_value;
       closing = closing_value;
+      created = created_value;
 
       // console.log("Real Soda value: " + sold);
     });
@@ -89,7 +93,8 @@ class RegistrationSummary extends React.Component {
     this.setState({
       sold: sold,
       opening: opening,
-      closing: closing
+      closing: closing,
+      created: created
 
     } 
   //   , function () {
@@ -110,9 +115,25 @@ class RegistrationSummary extends React.Component {
           <Card className={classes.card}>
             <CardContent align="center">
               <Typography variant="headline" align="center" color="default">
-                Soda Stock Status
+                Beer Stock Status
               </Typography>
               <br />
+
+
+              <Typography variant="button" align="center" color="default">
+                Updated on
+              </Typography> <br />
+              <Typography
+                    variant="button"
+                    gutterBottom
+                    align="center"
+                    color="primary"
+                  >
+                    {this.state.created}
+                  </Typography>
+              <br />
+
+
               <Avatar
                 alt="Remy Sharp"
                 src="/static/images/avatar/stats.png"
@@ -174,5 +195,6 @@ class RegistrationSummary extends React.Component {
   }
 }
 
-export default withStyles(styles)(RegistrationSummary);
+export default withStyles(styles)(BeerSummary);
+
 

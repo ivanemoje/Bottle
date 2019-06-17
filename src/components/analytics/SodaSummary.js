@@ -16,8 +16,8 @@ const styles = theme => ({
   }
 });
 
-//This is for Beer
-class FarmHistoryStatus extends React.Component {
+//This is for Soda
+class SodaSummary extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -25,46 +25,50 @@ class FarmHistoryStatus extends React.Component {
       opening: 0,
       closing: 0,
 
+      created: ""
+
     };
   }
 
   componentDidMount() {
     // Get mature & immature trees count
-    const query = firebase
-      .database()
-      .ref("stock")
-      .orderByKey();
-    query.on("value", snapshot => {
-      let openingCounter = 0;
-      let closingCounter = 0;
-      let soldCounter = 0;
-      snapshot.forEach(function(childSnapshot) {
-        // Immature trees counter; convert string to int
-        closingCounter =
-         closingCounter +
-          parseInt(childSnapshot.child("closing").val());
+    // const query = firebase
+    //   .database()
+    //   .ref("stock")
+    //   .orderByKey();
+    // query.on("value", snapshot => {
+    //   let openingCounter = 0;
+    //   let closingCounter = 0;
+    //   let soldCounter = 0;
+    //   let created = 0;
+    //   snapshot.forEach(function(childSnapshot) {
+    //     // Immature trees counter; convert string to int
+    //     closingCounter =
+    //      closingCounter +
+    //       parseInt(childSnapshot.child("closing").val());
 
-        // Mature trees counter; convert string to int
-        openingCounter =
-          openingCounter + parseInt(childSnapshot.child("opening").val());
+    //     // Mature trees counter; convert string to int
+    //     openingCounter =
+    //       openingCounter + parseInt(childSnapshot.child("opening").val());
 
-        // Hectarage counter; convert string to int
-        soldCounter =
-          soldCounter + parseInt(childSnapshot.child("sold").val());
-      });
-      this.setState({
-        opening: openingCounter,
-        closing: closingCounter,
-        sold: soldCounter
-      });
-    });
+    //     // Hectarage counter; convert string to int
+    //     soldCounter =
+    //       soldCounter + parseInt(childSnapshot.child("sold").val());
+    //   });
+    //   this.setState({
+    //     opening: openingCounter,
+    //     closing: closingCounter,
+    //     sold: soldCounter,
+    //     created: created
+    //   });
+    // });
 
 
     const query_latest_soda = firebase
     .database()
     .ref("stock")
     .orderByChild("drink")
-    .equalTo('Beer')
+    .equalTo('Soda')
     .limitToLast(1);
     
     query_latest_soda.on("value", snapshot => {
@@ -72,24 +76,29 @@ class FarmHistoryStatus extends React.Component {
     let sold = 0;
     let opening = 0;
     let closing = 0;
+    let created = null;
 
     snapshot.forEach(function(childSnapshot) {
      
       const sold_value =  childSnapshot.child("sold").val();
       const opening_value =  childSnapshot.child("opening").val();
       const closing_value =  childSnapshot.child("closing").val();
+      const created_value =  childSnapshot.child("created").val();
 
       sold = sold_value;
       opening = opening_value;
       closing = closing_value;
+      created = created_value;
 
-      // console.log("Real Soda value: " + sold);
+
+      console.log("Created: " + created);
     });
 
     this.setState({
       sold: sold,
       opening: opening,
-      closing: closing
+      closing: closing,
+      created: created
 
     } 
   //   , function () {
@@ -110,9 +119,23 @@ class FarmHistoryStatus extends React.Component {
           <Card className={classes.card}>
             <CardContent align="center">
               <Typography variant="headline" align="center" color="default">
-                Beer Stock Status
+                Soda Stock Status
               </Typography>
               <br />
+
+              <Typography variant="button" align="center" color="default">
+                Updated on
+              </Typography> <br />
+              <Typography
+                    variant="button"
+                    gutterBottom
+                    align="center"
+                    color="primary"
+                  >
+                    {this.state.created}
+                  </Typography>
+              <br />
+
               <Avatar
                 alt="Remy Sharp"
                 src="/static/images/avatar/stats.png"
@@ -174,6 +197,5 @@ class FarmHistoryStatus extends React.Component {
   }
 }
 
-export default withStyles(styles)(FarmHistoryStatus);
-
+export default withStyles(styles)(SodaSummary);
 
