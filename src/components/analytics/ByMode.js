@@ -62,6 +62,9 @@ class ByMode extends React.Component {
 
   componentDidMount() {
 
+    const {totalPriceOne} = this.state;
+    
+
     const query_bar_one = firebase
     .database()
     .ref("sales")
@@ -74,13 +77,16 @@ class ByMode extends React.Component {
         const totalPriceValue1 =  childSnapshot.child("totalPrice").val();
         totalPriceOne = totalPriceValue1;
       });
+
       this.setState({
-        totalPriceOne: totalPriceOne
-  
-      }          , function () {
-        console.log("total One: "+this.state.totalPriceOne);
+             totalPriceOne: totalPriceOne
+            }          
+          , function () {
+            console.log("total One: "+totalPriceOne);
+        });
     });
-    });
+
+    // console.log(totalPriceOne);
 
     const query_bar_two = firebase
     .database()
@@ -124,19 +130,21 @@ class ByMode extends React.Component {
     });
 
 
-    // this.setState ({
-    //   chartOptions: {
-    //     series: [
-    //       {
-    //         data: [
-    //           totalPriceOne,
-    //           totalPriceTwo,
-    //           totalPriceThree
-    //         ]
-    //       }
-    //     ]
-    //   }
-    // });
+    this.setState ({
+      chartOptions: {
+        series: [
+          {
+            data: [
+              totalPriceOne,totalPriceOne,totalPriceOne
+              // totalPriceTwo,
+              // totalPriceThree
+            ]
+          }
+        ]
+      }
+    }, function () {
+      console.log(totalPriceOne);
+    });
 
   
 

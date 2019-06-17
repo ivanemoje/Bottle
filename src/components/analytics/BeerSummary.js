@@ -28,8 +28,9 @@ class BeerSummary extends React.Component {
 
     };
   }
-
+  
   componentDidMount() {
+    
     // Get mature & immature trees count
     const query = firebase
       .database()
