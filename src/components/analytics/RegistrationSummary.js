@@ -21,14 +21,23 @@ class RegistrationSummary extends React.Component {
     super();
     this.state = {
       numOfFarmers: "",
-      males: 0,
-      females: 0
+      beer: 0,
+      soda: 0,
+
+      beer_sold: 0,
+      soda_sold: 0,
+      
+
+      beer_test: 0,
+      soda_test: 0
+
+
     };
   }
 
   componentDidMount() {
     // Get Farmer count
-    const farmersRef = firebase.database().ref("farmers");
+    const farmersRef = firebase.database().ref("stock");
     farmersRef.on("value", snapshot => {
       const farmerCount = snapshot.numChildren();
       this.setState({
@@ -42,23 +51,95 @@ class RegistrationSummary extends React.Component {
       .ref("stock")
       .orderByKey();
     query.on("value", snapshot => {
-      let maleCounter = 0;
-      let femaleCounter = 0;
+      let beerCounter = 0;
+      let sodaCounter = 0;
       snapshot.forEach(function(childSnapshot) {
         // Verify gender before incrementing by sex
-        const isMale = childSnapshot.child("sex").val() === "Male";
+        const isMale = childSnapshot.child("drink").val() === "Beer";
 
         if (isMale) {
-          maleCounter += 1;
+          beerCounter += 1;
         } else {
-          femaleCounter += 1;
+          sodaCounter += 1;
         }
       });
+
       this.setState({
-        males: maleCounter,
-        females: femaleCounter
-      });
+        beer: beerCounter,
+        soda: sodaCounter
+      } 
+    //   , function () {
+    //     console.log("Beer: "+this.state.beer);
+    //     console.log("Soda: "+this.state.soda);
+    // }
+      );
+     });
+
+
+     const query_latest_beer = firebase
+     .database()
+     .ref("stock")
+     .orderByChild("drink")
+     .equalTo('Beer')
+     .limitToLast(1);
+     
+     query_latest_beer.on("value", snapshot => {
+     let beerCounter_ = 0;
+     let sodaCounter_ = 0;
+     snapshot.forEach(function(childSnapshot) {
+       // Verify gender before incrementing by sex
+       const isMale = childSnapshot.child("drink").val() === "Beer";
+
+       if (isMale) {
+         beerCounter_ += 1;
+       } else {
+         sodaCounter_ += 1;
+       }
+     });
+
+     this.setState({
+       beer_test: beerCounter_,
+       soda_test: sodaCounter_
+     } 
+     , function () {
+       console.log("Beer: "+this.state.beer_test);
+   }
+     );
     });
+
+
+    const query_latest_soda = firebase
+    .database()
+    .ref("stock")
+    .orderByChild("drink")
+    .equalTo('Soda')
+    .limitToLast(1);
+    
+    query_latest_soda.on("value", snapshot => {
+
+    let soda_value = 0;
+    snapshot.forEach(function(childSnapshot) {
+     
+      // const isMale = childSnapshot.child("drink").val() === "Beer";
+      const soda_value =  childSnapshot.child("sold").val();
+      console.log("Soda value: " + soda_value);
+    });
+
+    this.setState({
+      soda_sold: soda_value
+
+    } 
+    , function () {
+      console.log("Soda Sold: "+this.state.soda_sold);
+  }
+    );
+   });
+
+
+
+
+
+
   }
   render() {
     const { classes } = this.props;
@@ -103,7 +184,7 @@ class RegistrationSummary extends React.Component {
                     align="center"
                     color="primary"
                   >
-                    {this.state.males}
+                    {this.state.beer}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} sm={4}>
@@ -116,7 +197,7 @@ class RegistrationSummary extends React.Component {
                     align="center"
                     color="primary"
                   >
-                    {this.state.females}
+                    {this.state.soda}
                   </Typography>
                 </Grid>
               </Grid>
