@@ -16,95 +16,47 @@ const styles = theme => ({
   }
 });
 
+//This is for Soda
 class RegistrationSummary extends React.Component {
   constructor() {
     super();
     this.state = {
-      numOfFarmers: "",
-      beer: 0,
-      soda: 0,
-
-      beer_sold: 0,
-      soda_sold: 0,
-      
-
-      beer_test: 0,
-      soda_test: 0
-
+      sold: 0,
+      opening: 0,
+      closing: 0,
 
     };
   }
 
   componentDidMount() {
-    // Get Farmer count
-    const farmersRef = firebase.database().ref("stock");
-    farmersRef.on("value", snapshot => {
-      const farmerCount = snapshot.numChildren();
-      this.setState({
-        numOfFarmers: farmerCount
-      });
-    });
-
-    // Get gender count
+    // Get mature & immature trees count
     const query = firebase
       .database()
       .ref("stock")
       .orderByKey();
     query.on("value", snapshot => {
-      let beerCounter = 0;
-      let sodaCounter = 0;
+      let openingCounter = 0;
+      let closingCounter = 0;
+      let soldCounter = 0;
       snapshot.forEach(function(childSnapshot) {
-        // Verify gender before incrementing by sex
-        const isMale = childSnapshot.child("drink").val() === "Beer";
+        // Immature trees counter; convert string to int
+        closingCounter =
+         closingCounter +
+          parseInt(childSnapshot.child("closing").val());
 
-        if (isMale) {
-          beerCounter += 1;
-        } else {
-          sodaCounter += 1;
-        }
+        // Mature trees counter; convert string to int
+        openingCounter =
+          openingCounter + parseInt(childSnapshot.child("opening").val());
+
+        // Hectarage counter; convert string to int
+        soldCounter =
+          soldCounter + parseInt(childSnapshot.child("sold").val());
       });
-
       this.setState({
-        beer: beerCounter,
-        soda: sodaCounter
-      } 
-    //   , function () {
-    //     console.log("Beer: "+this.state.beer);
-    //     console.log("Soda: "+this.state.soda);
-    // }
-      );
-     });
-
-
-     const query_latest_beer = firebase
-     .database()
-     .ref("stock")
-     .orderByChild("drink")
-     .equalTo('Beer')
-     .limitToLast(1);
-     
-     query_latest_beer.on("value", snapshot => {
-     let beerCounter_ = 0;
-     let sodaCounter_ = 0;
-     snapshot.forEach(function(childSnapshot) {
-       // Verify gender before incrementing by sex
-       const isMale = childSnapshot.child("drink").val() === "Beer";
-
-       if (isMale) {
-         beerCounter_ += 1;
-       } else {
-         sodaCounter_ += 1;
-       }
-     });
-
-     this.setState({
-       beer_test: beerCounter_,
-       soda_test: sodaCounter_
-     } 
-     , function () {
-       console.log("Beer: "+this.state.beer_test);
-   }
-     );
+        opening: openingCounter,
+        closing: closingCounter,
+        sold: soldCounter
+      });
     });
 
 
@@ -117,53 +69,62 @@ class RegistrationSummary extends React.Component {
     
     query_latest_soda.on("value", snapshot => {
 
-    let soda_value = 0;
+    let sold = 0;
+    let opening = 0;
+    let closing = 0;
+
     snapshot.forEach(function(childSnapshot) {
      
-      // const isMale = childSnapshot.child("drink").val() === "Beer";
-      const soda_value =  childSnapshot.child("sold").val();
-      console.log("Soda value: " + soda_value);
+      const sold_value =  childSnapshot.child("sold").val();
+      const opening_value =  childSnapshot.child("opening").val();
+      const closing_value =  childSnapshot.child("closing").val();
+
+      sold = sold_value;
+      opening = opening_value;
+      closing = closing_value;
+
+      // console.log("Real Soda value: " + sold);
     });
 
     this.setState({
-      soda_sold: soda_value
+      sold: sold,
+      opening: opening,
+      closing: closing
 
     } 
-    , function () {
-      console.log("Soda Sold: "+this.state.soda_sold);
-  }
+  //   , function () {
+  //     console.log("Soda Sold: "+this.state.sold);
+  // }
     );
    });
 
 
 
-
-
-
+   
   }
   render() {
     const { classes } = this.props;
-
     return (
       <Grid container spacing={24}>
         <Grid item xs={12} sm={12}>
           <Card className={classes.card}>
             <CardContent align="center">
               <Typography variant="headline" align="center" color="default">
-                Saved Stock Summary
+                Soda Stock Status
               </Typography>
               <br />
               <Avatar
                 alt="Remy Sharp"
-                src="/static/images/avatar/farmers.jpeg"
+                src="/static/images/avatar/stats.png"
                 className={classes.bigAvatar}
               />
               <br />
+
               <br />
               <Grid container spacing={24}>
                 <Grid item xs={4} sm={4}>
                   <Typography variant="title" gutterBottom align="center">
-                    Total
+                    Sold
                   </Typography>
                   <Typography
                     variant="headline"
@@ -171,12 +132,12 @@ class RegistrationSummary extends React.Component {
                     align="center"
                     color="primary"
                   >
-                    {this.state.numOfFarmers}
+                    {this.state.sold}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} sm={4}>
                   <Typography variant="title" gutterBottom align="center">
-                    Beers
+                    Opening
                   </Typography>
                   <Typography
                     variant="headline"
@@ -184,12 +145,12 @@ class RegistrationSummary extends React.Component {
                     align="center"
                     color="primary"
                   >
-                    {this.state.beer}
+                    {this.state.opening}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} sm={4}>
                   <Typography variant="title" gutterBottom align="center">
-                    Sodas
+                    Closing
                   </Typography>
                   <Typography
                     variant="headline"
@@ -197,7 +158,7 @@ class RegistrationSummary extends React.Component {
                     align="center"
                     color="primary"
                   >
-                    {this.state.soda}
+                    {this.state.closing}
                   </Typography>
                 </Grid>
               </Grid>
@@ -214,3 +175,4 @@ class RegistrationSummary extends React.Component {
 }
 
 export default withStyles(styles)(RegistrationSummary);
+

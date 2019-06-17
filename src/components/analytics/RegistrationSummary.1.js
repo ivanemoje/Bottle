@@ -16,115 +16,78 @@ const styles = theme => ({
   }
 });
 
-//This is for Beer
-class FarmHistoryStatus extends React.Component {
+class RegistrationSummary extends React.Component {
   constructor() {
     super();
     this.state = {
-      sold: 0,
-      opening: 0,
-      closing: 0,
+      numOfFarmers: "",
+      beer: 0,
+      soda: 0,
 
     };
   }
 
   componentDidMount() {
-    // Get mature & immature trees count
+    // Get Farmer count
+    const farmersRef = firebase.database().ref("stock");
+    farmersRef.on("value", snapshot => {
+      const farmerCount = snapshot.numChildren();
+      this.setState({
+        numOfFarmers: farmerCount
+      });
+    });
+
+    // Get gender count
     const query = firebase
       .database()
       .ref("stock")
       .orderByKey();
     query.on("value", snapshot => {
-      let openingCounter = 0;
-      let closingCounter = 0;
-      let soldCounter = 0;
+      let beerCounter = 0;
+      let sodaCounter = 0;
       snapshot.forEach(function(childSnapshot) {
-        // Immature trees counter; convert string to int
-        closingCounter =
-         closingCounter +
-          parseInt(childSnapshot.child("closing").val());
+        // Verify gender before incrementing by sex
+        const isMale = childSnapshot.child("drink").val() === "Beer";
 
-        // Mature trees counter; convert string to int
-        openingCounter =
-          openingCounter + parseInt(childSnapshot.child("opening").val());
-
-        // Hectarage counter; convert string to int
-        soldCounter =
-          soldCounter + parseInt(childSnapshot.child("sold").val());
+        if (isMale) {
+          beerCounter += 1;
+        } else {
+          sodaCounter += 1;
+        }
       });
+
       this.setState({
-        opening: openingCounter,
-        closing: closingCounter,
-        sold: soldCounter
+        beer: beerCounter,
+        soda: sodaCounter
       });
-    });
+
+     });
 
 
-    const query_latest_soda = firebase
-    .database()
-    .ref("stock")
-    .orderByChild("drink")
-    .equalTo('Beer')
-    .limitToLast(1);
-    
-    query_latest_soda.on("value", snapshot => {
-
-    let sold = 0;
-    let opening = 0;
-    let closing = 0;
-
-    snapshot.forEach(function(childSnapshot) {
-     
-      const sold_value =  childSnapshot.child("sold").val();
-      const opening_value =  childSnapshot.child("opening").val();
-      const closing_value =  childSnapshot.child("closing").val();
-
-      sold = sold_value;
-      opening = opening_value;
-      closing = closing_value;
-
-      // console.log("Real Soda value: " + sold);
-    });
-
-    this.setState({
-      sold: sold,
-      opening: opening,
-      closing: closing
-
-    } 
-  //   , function () {
-  //     console.log("Soda Sold: "+this.state.sold);
-  // }
-    );
-   });
-
-
-
-   
   }
   render() {
     const { classes } = this.props;
+
     return (
       <Grid container spacing={24}>
         <Grid item xs={12} sm={12}>
           <Card className={classes.card}>
             <CardContent align="center">
               <Typography variant="headline" align="center" color="default">
-                Beer Stock Status
+                Saved Stock Summary
               </Typography>
               <br />
               <Avatar
                 alt="Remy Sharp"
-                src="/static/images/avatar/stats.png"
+                src="/static/images/avatar/farmers.jpeg"
                 className={classes.bigAvatar}
               />
               <br />
-
               <br />
               <Grid container spacing={24}>
                 <Grid item xs={4} sm={4}>
                   <Typography variant="title" gutterBottom align="center">
-                    Sold
+                    Total
                   </Typography>
                   <Typography
                     variant="headline"
@@ -132,12 +95,12 @@ class FarmHistoryStatus extends React.Component {
                     align="center"
                     color="primary"
                   >
-                    {this.state.sold}
+                    {this.state.numOfFarmers}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} sm={4}>
                   <Typography variant="title" gutterBottom align="center">
-                    Opening
+                    Beers
                   </Typography>
                   <Typography
                     variant="headline"
@@ -145,12 +108,12 @@ class FarmHistoryStatus extends React.Component {
                     align="center"
                     color="primary"
                   >
-                    {this.state.opening}
+                    {this.state.beer}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} sm={4}>
                   <Typography variant="title" gutterBottom align="center">
-                    Closing
+                    Sodas
                   </Typography>
                   <Typography
                     variant="headline"
@@ -158,7 +121,7 @@ class FarmHistoryStatus extends React.Component {
                     align="center"
                     color="primary"
                   >
-                    {this.state.closing}
+                    {this.state.soda}
                   </Typography>
                 </Grid>
               </Grid>
@@ -174,6 +137,4 @@ class FarmHistoryStatus extends React.Component {
   }
 }
 
-export default withStyles(styles)(FarmHistoryStatus);
-
-
+export default withStyles(styles)(RegistrationSummary);

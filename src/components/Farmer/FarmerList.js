@@ -107,24 +107,24 @@ const drinks = [
 
 const lookup = {
   Beer: [
-    { id: "1", text: "Kameme" },
-    { id: "2", text: "Mwabulambya" },
-    { id: "3", text: "Mwenemisuku" },
-    { id: "4", text: "Mwenewenya" },
-    { id: "5", text: "Nthalire" }
+    { id: "1", text: "Nile Special" },
+    { id: "2", text: "Club" },
+    { id: "3", text: "Nile Gold" },
+    { id: "4", text: "Guiness" },
+    { id: "5", text: "Castle Lager" }
   ],
   Soda: [
-    { id: "1", text: "Chikulamayembe" },
-    { id: "2", text: "Chipinduka" },
-    { id: "3", text: "Kachulu" },
-    { id: "4", text: "Mwahenga" },
-    { id: "5", text: "Mwalweni" },
-    { id: "6", text: "Mwamlowe" },
-    { id: "7", text: "Mwankhunikira" },
-    { id: "8", text: "Nyika National Park" },
-    { id: "9", text: "Rumphi Boma" },
-    { id: "10", text: "Vwaza Game Reserve" },
-    { id: "11", text: "Zolokere" }
+    { id: "1", text: "Mirinda Berry" },
+    { id: "2", text: "Mirinda Orange" },
+    { id: "3", text: "Coca Cola" },
+    { id: "4", text: "Sprite" },
+    { id: "5", text: "Coca Cola Zero" },
+    { id: "6", text: "Pepsi" },
+    { id: "7", text: "Stoney" },
+    { id: "8", text: "Krest" },
+    { id: "9", text: "Rock Boom" },
+    { id: "10", text: "Soda 2" },
+    { id: "11", text: "Soda 3" }
   ]
 };
 
