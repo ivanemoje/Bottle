@@ -85,14 +85,14 @@ class StockDetails extends React.Component {
       brand: "",
       drink: "",
       
-      matureTrees: "",
-      immatureTrees: "",
-      hectarage: "",
+      opening: "",
+      closing: "",
+      sold: "",
 
       // Dashboard registration summary
       value: 0,
-      males: 0,
-      females: 0,
+      beers: 0,
+      sodas: 0,
 
       // Procurement create
       advanceBalance: "",
@@ -213,21 +213,19 @@ class StockDetails extends React.Component {
       const brand = snapshot.child("brand").val();
       const drink = snapshot.child("drink").val();
 
-      const matureTrees = snapshot.child("matureTrees").val();
-      const immatureTrees = snapshot.child("immatureTrees").val();
-      const hectarage = snapshot.child("hectarage").val();
+      const opening = snapshot.child("opening").val();
+      const closing = snapshot.child("closing").val();
+      const sold = snapshot.child("sold").val();
 
       this.setState({
         id: key,
-        // firstname: firstname,
-        // lastname: lastname,
 
         brand: brand,
         drink: drink,
 
-        matureTrees: matureTrees,
-        immatureTrees: immatureTrees,
-        hectarage: hectarage,
+        opening: opening,
+        closing: closing,
+        sold: sold,
 
         //Dialog box
         open: false
@@ -336,7 +334,7 @@ class StockDetails extends React.Component {
                 <Grid container spacing={24}>
                   <Grid item xs={4} sm={4}>
                     <Typography variant="title" gutterBottom align="center">
-                      Hectarage
+                      Sold
                     </Typography>
                     <Typography
                       variant="title"
@@ -344,12 +342,12 @@ class StockDetails extends React.Component {
                       align="center"
                       color="Primary"
                     >
-                      {this.state.hectarage}
+                      {this.state.sold}
                     </Typography>
                   </Grid>
                   <Grid item xs={4} sm={4}>
                     <Typography variant="title" gutterBottom align="center">
-                      Mature
+                      Opening
                     </Typography>
                     <Typography
                       variant="title"
@@ -357,12 +355,12 @@ class StockDetails extends React.Component {
                       align="center"
                       color="Primary"
                     >
-                      {this.state.matureTrees}
+                      {this.state.opening}
                     </Typography>
                   </Grid>
                   <Grid item xs={4} sm={4}>
                     <Typography variant="title" gutterBottom align="center">
-                      Immature
+                      Closing
                     </Typography>
                     <Typography
                       variant="title"
@@ -370,7 +368,7 @@ class StockDetails extends React.Component {
                       align="center"
                       color="Primary"
                     >
-                      {this.state.immatureTrees}
+                      {this.state.closing}
                     </Typography>
                   </Grid>
                 </Grid>

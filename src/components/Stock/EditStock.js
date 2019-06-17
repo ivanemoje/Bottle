@@ -31,8 +31,7 @@ class EditStock extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // firstname: "",
-      // lastname: "",
+
       brand: "",
       drink: ""
     };
@@ -66,36 +65,6 @@ class EditStock extends React.Component {
             <br />
 
             <Grid container spacing={24}>
-             {/*  <Grid item xs={6} sm={6}>
-                <TextField
-                  required
-                  id="firstname"
-                  name="firstname"
-                  value={this.state.firstname}
-                  onChange={this.onChange}
-                  label="Firstname"
-                  fullWidth
-                  autoComplete="off"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                />
-              </Grid>
-              <Grid item xs={6} sm={6}>
-                <TextField
-                  required
-                  id="lastname"
-                  name="lastname"
-                  value={this.state.lastname}
-                  onChange={this.onChange}
-                  label="Lastname"
-                  fullWidth
-                  autoComplete="off"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                />
-              </Grid> */}
              
               <Grid item xs={6} sm={6}>
                 <TextField

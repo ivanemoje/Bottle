@@ -56,9 +56,9 @@ class CreateStock extends React.Component {
       drink: "",
       brand: "",
       
-      matureTrees: "",
-      immatureTrees: "",
-      hectarage: "",
+      opening: "",
+      closing: "",
+      sold: "",
 
       dataValue: "Beer"
     };
@@ -80,7 +80,7 @@ class CreateStock extends React.Component {
 
   handleCalculateTotalPrice = () => {
     this.setState({
-      hectarage: this.state.matureTrees - this.state.immatureTrees
+      sold: this.state.opening - this.state.closing
     });
   };
 
@@ -104,9 +104,9 @@ class CreateStock extends React.Component {
       drink: this.state.drink,
       brand: this.state.brand,
 
-      matureTrees: this.state.matureTrees,
-      immatureTrees: this.state.immatureTrees,
-      hectarage: this.state.hectarage,
+      opening: this.state.opening,
+      closing: this.state.closing,
+      sold: this.state.sold,
       created: new Date().toLocaleString("en-GB", {
         timeZone: "Africa/Maputo"
       })
@@ -119,25 +119,22 @@ class CreateStock extends React.Component {
 
     stockRef.push(stock);
     this.setState({
-      // firstname: "",
-      // lastname: "",
 
       drink: "",
       brand: "",
 
-      matureTrees: "",
-      immatureTrees: "",
-      hectarage: ""
+      opening: "",
+      closing: "",
+      sold: ""
     });
   };
 
   render() {
     const {
-      // firstname,
-      // lastname,
-      matureTrees,
-      immatureTrees,
-      hectarage
+    
+      opening,
+      closing,
+      sold
     } = this.state;
 
     const { dataValue } = this.state;
@@ -207,9 +204,9 @@ class CreateStock extends React.Component {
             <Grid item xs={6} sm={6}>
               <TextField
                 required
-                id="matureTrees"
-                name="matureTrees"
-                value={matureTrees}
+                id="opening"
+                name="opening"
+                value={opening}
                 onChange={this.onChange}
                 label="Opening Stock"
                 helperText="(Enter Figure)"
@@ -221,9 +218,9 @@ class CreateStock extends React.Component {
             <Grid item xs={6} sm={6}>
               <TextField
                 required
-                id="immatureTrees"
-                name="immatureTrees"
-                value={immatureTrees}
+                id="closing"
+                name="closing"
+                value={closing}
                 onChange={this.onChange}
                 label="Closing Stock "
                 helperText="(Enter Figure)"
@@ -236,9 +233,9 @@ class CreateStock extends React.Component {
             <Grid item xs={6} sm={6}>
               <TextField
                 required
-                id="hectarage"
-                name="hectarage"
-                value={hectarage}
+                id="sold"
+                name="sold"
+                value={sold}
                 onClick={this.handleCalculateTotalPrice}
                 label="Stock Sold "
                 helperText="(Enter Figure)"

@@ -39,7 +39,7 @@ class RegistrationSummary extends React.Component {
     // Get gender count
     const query = firebase
       .database()
-      .ref("farmers")
+      .ref("stock")
       .orderByKey();
     query.on("value", snapshot => {
       let maleCounter = 0;

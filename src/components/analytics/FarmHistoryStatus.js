@@ -20,9 +20,9 @@ class FarmHistoryStatus extends React.Component {
   constructor() {
     super();
     this.state = {
-      hectarage: 0,
-      mature: 0,
-      immature: 0
+      sold: 0,
+      opening: 0,
+      closing: 0
     };
   }
 
@@ -30,30 +30,30 @@ class FarmHistoryStatus extends React.Component {
     // Get mature & immature trees count
     const query = firebase
       .database()
-      .ref("farmers")
+      .ref("stock")
       .orderByKey();
     query.on("value", snapshot => {
-      let matureCounter = 0;
-      let immatureCounter = 0;
-      let hectarageCounter = 0;
+      let openingCounter = 0;
+      let closingCounter = 0;
+      let soldCounter = 0;
       snapshot.forEach(function(childSnapshot) {
         // Immature trees counter; convert string to int
-        immatureCounter =
-          immatureCounter +
-          parseInt(childSnapshot.child("immatureTrees").val());
+        closingCounter =
+         closingCounter +
+          parseInt(childSnapshot.child("closing").val());
 
         // Mature trees counter; convert string to int
-        matureCounter =
-          matureCounter + parseInt(childSnapshot.child("matureTrees").val());
+        openingCounter =
+          openingCounter + parseInt(childSnapshot.child("opening").val());
 
         // Hectarage counter; convert string to int
-        hectarageCounter =
-          hectarageCounter + parseInt(childSnapshot.child("hectarage").val());
+        soldCounter =
+          soldCounter + parseInt(childSnapshot.child("sold").val());
       });
       this.setState({
-        mature: matureCounter,
-        immature: immatureCounter,
-        hectarage: hectarageCounter
+        opening: openingCounter,
+        closing: closingCounter,
+        sold: soldCounter
       });
     });
   }
@@ -65,7 +65,7 @@ class FarmHistoryStatus extends React.Component {
           <Card className={classes.card}>
             <CardContent align="center">
               <Typography variant="headline" align="center" color="default">
-                Farm History & Status
+                Stock History & Status
               </Typography>
               <br />
               <Avatar
@@ -79,7 +79,7 @@ class FarmHistoryStatus extends React.Component {
               <Grid container spacing={24}>
                 <Grid item xs={4} sm={4}>
                   <Typography variant="title" gutterBottom align="center">
-                    Hectarage
+                    Sold
                   </Typography>
                   <Typography
                     variant="headline"
@@ -87,12 +87,12 @@ class FarmHistoryStatus extends React.Component {
                     align="center"
                     color="primary"
                   >
-                    {this.state.hectarage}
+                    {this.state.sold}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} sm={4}>
                   <Typography variant="title" gutterBottom align="center">
-                    Mature
+                    Opening
                   </Typography>
                   <Typography
                     variant="headline"
@@ -100,12 +100,12 @@ class FarmHistoryStatus extends React.Component {
                     align="center"
                     color="primary"
                   >
-                    {this.state.mature}
+                    {this.state.opening}
                   </Typography>
                 </Grid>
                 <Grid item xs={4} sm={4}>
                   <Typography variant="title" gutterBottom align="center">
-                    Immature
+                    Closing
                   </Typography>
                   <Typography
                     variant="headline"
@@ -113,7 +113,7 @@ class FarmHistoryStatus extends React.Component {
                     align="center"
                     color="primary"
                   >
-                    {this.state.immature}
+                    {this.state.closing}
                   </Typography>
                 </Grid>
               </Grid>

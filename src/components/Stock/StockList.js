@@ -139,8 +139,8 @@ class StockList extends React.Component {
       brand: "",
       drink: "",
 
-      matureTrees: "",
-      immatureTrees: "",
+      opening: "",
+      closing: "",
       hectarage: "",
 
       dataValue: "Beer"
@@ -171,9 +171,9 @@ class StockList extends React.Component {
           brand: items[item].brand,
           drink: items[item].drink,
 
-          matureTrees: items[item].matureTrees,
-          immatureTrees: items[item].immatureTrees,
-          hectarage: items[item].hectarage
+          opening: items[item].opening,
+          closing: items[item].closing,
+          sold: items[item].sold
         });
       }
 
@@ -209,9 +209,9 @@ class StockList extends React.Component {
         brand: snapshot.child("brand").val(),
         drink: snapshot.child("drink").val(),
 
-        matureTrees: snapshot.child("matureTrees").val(),
-        immatureTrees: snapshot.child("immatureTrees").val(),
-        hectarage: snapshot.child("hectarage").val()
+        opening: snapshot.child("opening").val(),
+        closing: snapshot.child("closing").val(),
+        sold: snapshot.child("sold").val()
       });
     });
     console.log(
@@ -237,9 +237,9 @@ class StockList extends React.Component {
       drink: this.state.drink,
       brand: this.state.brand,
       
-      matureTrees: this.state.matureTrees,
-      immatureTrees: this.state.immatureTrees,
-      hectarage: this.state.hectarage
+      opening: this.state.opening,
+      closing: this.state.closing,
+      sold: this.state.sold
     };
 
     //Update stock module
@@ -346,9 +346,9 @@ class StockList extends React.Component {
 
               
               stock.brand,
-              stock.matureTrees,
-              stock.immatureTrees,
-              stock.hectarage,
+              stock.opening,
+              stock.closing,
+              stock.sold,
 
               <IconButton
                 color="primary"
@@ -478,11 +478,12 @@ class StockList extends React.Component {
                 <Grid item xs={6} sm={6}>
                   <TextField
                     required
-                    id="matureTrees"
-                    name="matureTrees"
-                    value={this.state.matureTrees}
+                    id="opening"
+                    name="opening"
+                    value={this.state.opening}
                     onChange={this.onChange}
-                    label="Number of mature trees"
+                    label="Opening Stock "
+                    helperText="(Enter number)"
                     type="number"
                     fullWidth
                     autoComplete="off"
@@ -491,12 +492,12 @@ class StockList extends React.Component {
                 <Grid item xs={6} sm={6}>
                   <TextField
                     required
-                    id="immatureTrees"
-                    name="immatureTrees"
-                    value={this.state.immatureTrees}
+                    id="closing"
+                    name="closing"
+                    value={this.state.closing}
                     onChange={this.onChange}
-                    label="Number of immature trees"
-                    helperText="(below 3 years)"
+                    label="Closing Stock"
+                    helperText="(Enter number)"
                     type="number"
                     fullWidth
                     autoComplete="off"
@@ -506,12 +507,12 @@ class StockList extends React.Component {
                 <Grid item xs={6} sm={6}>
                   <TextField
                     required
-                    id="hectarage"
-                    name="hectarage"
-                    value={this.state.hectarage}
+                    id="sold"
+                    name="sold"
+                    value={this.state.sold}
                     onChange={this.onChange}
-                    label="Hectarage under cultivation"
-                    helperText="(Enter in Acres)"
+                    label="Sold Stock"
+                    helperText="(Enter number)"
                     type="number"
                     fullWidth
                     autoComplete="off"
