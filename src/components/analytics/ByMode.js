@@ -29,9 +29,9 @@ class ByMode extends React.Component {
   constructor() {
     super();
     this.state = {
-      totalPriceOne: 0,
-      totalPriceTwo: 0,
-      totalPriceThree: 0,
+      // totalPriceOne: 10,
+      // totalPriceTwo: 10,
+      // totalPriceThree: 10,
       chartOptions: {
         xAxis: {
           title: {
@@ -62,91 +62,50 @@ class ByMode extends React.Component {
 
   componentDidMount() {
 
-    const {totalPriceOne} = this.state;
-    
-
-    const query_bar_one = firebase
+ 
+    const query = firebase
     .database()
     .ref("sales")
-    .orderByChild("bar")
-    .equalTo('Bar 1');
+    .orderByKey();
+  query.on("value", snapshot => {
+    let bar1 = 0;
+    let bar2 = 0;
+    let bar3 = 0;
 
-    query_bar_one.on("value", snapshot => {
-      let totalPriceOne = 0;
-      snapshot.forEach(function(childSnapshot) {
-        const totalPriceValue1 =  childSnapshot.child("totalPrice").val();
-        totalPriceOne = totalPriceValue1;
-      });
+    snapshot.forEach(childSnapshot => {
+      // Get values
+      const isBar1 =
+      childSnapshot.child("bar").val() === "Bar 1";
+        console.log(isBar1);
+        const isBar2 =
+        childSnapshot.child("bar").val() === "Bar 2";
 
-      this.setState({
-             totalPriceOne: totalPriceOne
-            }          
-          , function () {
-            console.log("total One: "+totalPriceOne);
-        });
+        const isBar3 =
+        childSnapshot.child("bar").val() === "Bar 3";
+
+        if (isBar1) {
+          bar1 = bar1 + childSnapshot.child("totalPrice").val();
+        } else if (isBar2) {
+          bar2 = bar2 + childSnapshot.child("totalPrice").val();
+        } else if (isBar3) {
+          bar3 = bar3 + childSnapshot.child("totalPrice").val();
+        }
+      
     });
-
-    // console.log(totalPriceOne);
-
-    const query_bar_two = firebase
-    .database()
-    .ref("sales")
-    .orderByChild("bar")
-    .equalTo('Bar 2');
-
-    query_bar_two.on("value", snapshot => {
-      let totalPriceTwo = 0;
-      snapshot.forEach(function(childSnapshot) {
-        const totalPriceValue2 =  childSnapshot.child("totalPrice").val();
-        totalPriceTwo = totalPriceValue2;
-      });
-      this.setState({
-        totalPriceTwo: totalPriceTwo
-  
-      }          , function () {
-        console.log("total Two: "+this.state.totalPriceTwo);
-    });
-    });
-
-    const query_bar_three = firebase
-    .database()
-    .ref("sales")
-    .orderByChild("bar")
-    .equalTo('Bar 3');
-
-    query_bar_three.on("value", snapshot => {
-      let totalPriceThree = 0;
-      snapshot.forEach(function(childSnapshot) {
-        const totalPriceValue3 =  childSnapshot.child("totalPrice").val();
-        totalPriceThree = totalPriceValue3;
-      });
-      this.setState({
-        totalPriceThree: totalPriceThree
-      }
-          , function () {
-      console.log("total Three: "+this.state.totalPriceThree);
-  }
-      );
-    });
-
-
-    this.setState ({
+    this.setState({
       chartOptions: {
         series: [
           {
             data: [
-              totalPriceOne,totalPriceOne,totalPriceOne
-              // totalPriceTwo,
-              // totalPriceThree
+              bar1,
+              bar2,
+              bar3
             ]
           }
         ]
       }
-    }, function () {
-      console.log(totalPriceOne);
     });
-
-  
+  });
 
   }
 
