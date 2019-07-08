@@ -44,9 +44,9 @@ const App = ({ classes }) => (
       <Switch>
         <Route exact path="/" component={Dashboard} />
 
-        <Route path="/farmers" component={FarmerList} />
+        {/* <Route path="/farmers" component={FarmerList} />
         <Route path="/show/:id" component={FarmerDetails} />
-        <Route path="/farmers/edit" component={EditFarmer} />
+        <Route path="/farmers/edit" component={EditFarmer} /> */}
 
         <Route path="/stock" component={StockList} />
         <Route path="/show/:id" component={StockDetails} />
